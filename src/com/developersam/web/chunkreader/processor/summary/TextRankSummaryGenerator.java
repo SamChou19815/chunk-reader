@@ -14,8 +14,8 @@ import java.util.List;
 public abstract class TextRankSummaryGenerator
         extends AbstractSummaryGenerator {
 
-    private List<AnnotatedSentence> annotatedSentenceList;
-    private double[][] similarityMatrix;
+    protected List<AnnotatedSentence> annotatedSentenceList;
+    protected double[][] similarityMatrix;
 
     /**
      * Calculate the similarity between two sentences.

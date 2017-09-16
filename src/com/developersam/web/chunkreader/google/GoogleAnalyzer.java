@@ -83,10 +83,10 @@ public class GoogleAnalyzer {
      * @throws IOException thrown when there is a problem finding entities.
      */
     private void findEntities() throws IOException {
-        AnalyzeEntitiesRequest request = AnalyzeEntitiesRequest.newBuilder()
+        AnalyzeEntitySentimentRequest request = AnalyzeEntitySentimentRequest.newBuilder()
                 .setDocument(doc)
                 .setEncodingType(EncodingType.UTF16).build();
-        AnalyzeEntitiesResponse response = languageAPI.analyzeEntities(request);
+        AnalyzeEntitySentimentResponse response = languageAPI.analyzeEntitySentiment(request);
         entities = response.getEntitiesList();
     }
 

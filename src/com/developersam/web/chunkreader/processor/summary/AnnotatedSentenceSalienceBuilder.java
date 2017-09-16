@@ -34,6 +34,7 @@ public class AnnotatedSentenceSalienceBuilder {
         return sentenceSalience;
     }
 
+
     /**
      *
      *
@@ -41,7 +42,7 @@ public class AnnotatedSentenceSalienceBuilder {
      * need to fix the above
      * @param i the ith item in the list
      */
-    public void calculateWeight(int i) {
+    public void calculateSentenceSalience(int i) {
         double sumRatio = 0.0;
         double sentenceSalienceOrig = sentenceSalience[i];
 
@@ -68,9 +69,11 @@ public class AnnotatedSentenceSalienceBuilder {
             return;
         }
         else {
-            calculateWeight(Math.floorMod((i+1), asList.size()));
+            calculateSentenceSalience(Math.floorMod((i+1), asList.size()));
         }
     }
+
+
 //
 //    /**
 //     * delete this!!!

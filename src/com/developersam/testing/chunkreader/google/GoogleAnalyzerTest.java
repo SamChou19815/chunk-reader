@@ -38,6 +38,8 @@ public class GoogleAnalyzerTest {
     public void getEntities() throws Exception {
         List<Entity> entityList = googleAnalyzer.getEntities();
         System.out.println(entityList);
+        System.out.println(entityList.get(0).getSentiment());
+        System.out.println("===========");
         assertTrue(entityList != null);
     }
 
