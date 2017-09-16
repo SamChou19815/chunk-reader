@@ -5,6 +5,7 @@ import com.google.cloud.language.v1beta2.Entity;
 import com.google.cloud.language.v1beta2.Sentence;
 import com.google.cloud.language.v1beta2.Token;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,8 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
                      List<Sentence> sentenceList,
                      List<Token> tokenList) {
         this.entityList = entityList;
-        this.sentenceList = sentenceList;
+        this.sentenceList = new ArrayList<>();
+        this.sentenceList.addAll(sentenceList);
         /*
          * Sort sentences to ensure binary search.
          * I'm actually not sure about whether the sentence list is originally
@@ -31,7 +33,7 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
          * as a line of protective code to ensure binary search of the list
          * can work.
          */
-        sentenceList.sort((o1, o2) -> (Integer.compare(
+        this.sentenceList.sort((o1, o2) -> (Integer.compare(
                 o1.getText().getBeginOffset(),
                 o2.getText().getBeginOffset())
         ));
@@ -43,6 +45,7 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
     @Override
     public void process() {
         List<AnnotatedSentence> annotatedSentenceList = getEvaluatedSentences();
+        System.out.println(annotatedSentenceList);
         // TODO some code to throw sentence list into the database.
     }
 }

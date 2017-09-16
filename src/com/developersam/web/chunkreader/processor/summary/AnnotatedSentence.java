@@ -57,4 +57,10 @@ public class AnnotatedSentence {
         // TODO
     }
 
+    @Override
+    public String toString() {
+        return "{\n" + "sentence: '" + sentence +
+                "', \n position: " + position +
+                ", \n salience: " + salience + "}";
+    }
 }
