@@ -19,6 +19,17 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
                      List<Token> tokenList) {
         this.entityList = entityList;
         this.sentenceList = sentenceList;
+        /*
+         * Sort sentences to ensure binary search.
+         * I'm actually not sure about whether the sentence list is originally
+         * sorted. Google's Doc does not say anything about that. It is written
+         * as a line of protective code to ensure binary search of the list
+         * can work.
+         */
+        sentenceList.sort((o1, o2) -> (Integer.compare(
+                o1.getText().getBeginOffset(),
+                o2.getText().getBeginOffset())
+        ));
         this.tokenList = tokenList;
     }
 
