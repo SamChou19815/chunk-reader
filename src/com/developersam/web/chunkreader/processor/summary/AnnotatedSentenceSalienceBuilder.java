@@ -10,17 +10,18 @@ public class AnnotatedSentenceSalienceBuilder {
 
 
     private List<AnnotatedSentence> asList;
-    private double[][] similarityMatri;
+    private double[][] similarityMatrix;
 
 
     /**
-     * Construct ANnotatedSentenceSalienceBuilder
+     * Construct AnnotatedSentenceSalienceBuilder.
      * Initialize sentenceSalience list with the length of AnnotatedSentences
-     * @param as
+     * @param as annotated sentence list.
      */
-    public AnnotatedSentenceSalienceBuilder(List<AnnotatedSentence> as, double[][] similarityMatri) {
+    public AnnotatedSentenceSalienceBuilder(List<AnnotatedSentence> as,
+                                            double[][] similarityMatrix) {
         asList = as;
-        this.similarityMatri = similarityMatri;
+        this.similarityMatrix = similarityMatrix;
     }
 
 
@@ -38,12 +39,12 @@ public class AnnotatedSentenceSalienceBuilder {
 
         for (int j=0; j<asList.size(); j++) {
             if (j != i) {
-                double weightji = similarityMatri[j][i];
+                double weightji = similarityMatrix[j][i];
                 double sumWeightjk = 0.0;
 
                 for (int k=0; k<asList.size(); k++) {
                     if (k != j) {
-                        sumWeightjk = sumWeightjk + similarityMatri[j][k];
+                        sumWeightjk = sumWeightjk + similarityMatrix[j][k];
                     }
                 }
 

@@ -11,7 +11,7 @@ public class TextRankSummaryGeneratorImp extends TextRankSummaryGenerator{
 
     public TextRankSummaryGeneratorImp(){
         weightCalculator = new WeightCalculator(entityList, annotatedSentenceList);
-        AnnotatedSentenceSalienceBuilder salienceBuilder = new AnnotatedSentenceSalienceBuilder(annotatedSentenceList, similarityMatrix);
+        salienceBuilder = new AnnotatedSentenceSalienceBuilder(annotatedSentenceList, similarityMatrix);
     }
 
     @Override

@@ -37,28 +37,27 @@ public class WeightCalculator {
     }
 
     public double weight(AnnotatedSentence n1, AnnotatedSentence n2){
-
-        ArrayList<KnowledgeNode> n1_keywords = new ArrayList<>();
-        ArrayList<KnowledgeNode> n2_keywords = new ArrayList<>();
+        ArrayList<KnowledgeNode> n1Keywords = new ArrayList<>();
+        ArrayList<KnowledgeNode> n2Keywords = new ArrayList<>();
         for(int i = 0; i < entityList.size();i++){
             KnowledgeNode keyword = new KnowledgeNode(entityList.get(i));
             List<int[]> list = keyword.getEntityMentionsData();
             for(int j = 0; j < list.size();j++){
                 int num = findSentenceID(list.get(j)[0]);
-                if(num == n1.getPosition()) n1_keywords.add(keyword);
-                if(num == n2.getPosition()) n2_keywords.add(keyword);
+                if(num == n1.getPosition()) n1Keywords.add(keyword);
+                if(num == n2.getPosition()) n2Keywords.add(keyword);
             }
         }
 
-        Double weight_sum = 0.0;
-        for(int i = 0; i < n1_keywords.size();i++){
-            KnowledgeNode keyword1 = n1_keywords.get(i);
-            for(int j = 0; j < n2_keywords.size();j++){
-                KnowledgeNode keyword2 = n2_keywords.get(j);
-                weight_sum += word_weight(keyword1, keyword2);
+        double weightSum = 0.0;
+        for (int i = 0; i < n1Keywords.size();i++){
+            KnowledgeNode keyword1 = n1Keywords.get(i);
+            for (int j = 0; j < n2Keywords.size();j++){
+                KnowledgeNode keyword2 = n2Keywords.get(j);
+                weightSum += word_weight(keyword1, keyword2);
             }
         }
-        return weight_sum/Math.log(n1.getSentence().length() + n2.getSentence().length());
+        return weightSum/Math.log(n1.getSentence().length() + n2.getSentence().length());
 
     }
 
