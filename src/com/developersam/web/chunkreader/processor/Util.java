@@ -21,7 +21,7 @@ public class Util {
      *        length: length of the article. if it is a word, length = 1
      * @return int sentiment score
      */
-    public static int getSentimentScore(Sentiment sentiment, int length) {
+    public static int getSentimentScore(Sentiment sentiment) {
 
         double score = sentiment.getScore();
         double magnitude = sentiment.getMagnitude();
@@ -38,13 +38,13 @@ public class Util {
          * >= 2 ==> strongly
          */
 
-        /*
-         * if length != 1, then it is an article
-         * log the length to process the magnitude
-         */
-        if (length != 1) {
-            magnitude = Math.log(length);
-        }
+//        /*
+//         * if length != 1, then it is an article
+//         * log the length to process the magnitude
+//         */
+//        if (length != 1) {
+//            magnitude = Math.log(length);
+//        }
 
         /*
          * decide the type
