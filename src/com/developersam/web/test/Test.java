@@ -35,4 +35,14 @@ public class Test {
         List<Sentence> sentences = response.getSentencesList();
         return response.getTokensList();
     }
+
+    public List<Entity> analyzeEntitiesText(String text) throws IOException {
+        Document doc = Document.newBuilder()
+                .setContent(text).setType(Type.PLAIN_TEXT).build();
+        AnalyzeEntitiesRequest request = AnalyzeEntitiesRequest.newBuilder()
+                .setDocument(doc)
+                .setEncodingType(EncodingType.UTF16).build();
+        AnalyzeEntitiesResponse response = languageApi.analyzeEntities(request);
+        return response.getEntitiesList();
+    }
 }
