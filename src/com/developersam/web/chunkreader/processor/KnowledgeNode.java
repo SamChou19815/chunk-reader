@@ -8,12 +8,13 @@ import java.util.List;
 
 import static com.developersam.web.chunkreader.processor.Util.getSentimentScore;
 
-public abstract class KnowledgeNode {
+public class KnowledgeNode {
     private Entity entity;
     private String name;
     private Entity.Type type;
     private String metadataURL;
     private float salience;
+    private int sentimentScore;
     private ArrayList<int[]> entityMentions;
 
 
@@ -22,9 +23,12 @@ public abstract class KnowledgeNode {
         name = entity.getName();
         type = entity.getType();
         metadataURL = entity.getMetadataMap().get("wikipedia_url");
-        int num = entity.getMentionsCount();
         salience = entity.getSalience();
-        for (int i=0; i<num; i++){
+        sentimentScore = Util.getSentimentScore(entity.getSentiment());
+        entityMentions = new ArrayList<>();
+
+        int num = entity.getMentionsCount();
+        for (int i = 0; i < num; i++){
             int [] data = {entity.getMentions(i).getText().getBeginOffset(),
                     Util.getSentimentScore(entity.getMentions(i).getSentiment())};
             entityMentions.add(data);
@@ -51,15 +55,14 @@ public abstract class KnowledgeNode {
         return salience;
     }
 
+    public float getSentimentScore(){
+        return sentimentScore;
+    }
+
     public ArrayList<int[]> getEntityMentionsData (){
         return entityMentions;
     }
-    /**
-     * Obtain the name, type, metadata URL, and salience. metadataURL might be null.
-     * @param e
-     */
-    public void process(Entity e){
 
-    }
+
 
 }
