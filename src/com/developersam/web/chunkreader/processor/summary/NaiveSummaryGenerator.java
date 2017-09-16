@@ -18,6 +18,7 @@ public class NaiveSummaryGenerator extends AbstractSummaryGenerator {
     private int findSentenceID(List<AnnotatedSentence> annotatedSentenceList,
                                int pos) {
         /*
+        // Wrong binary search method, may fix in the future.
         int start = 0, end = annotatedSentenceList.size() - 1;
         while (true) {
             if (end - start <= 1) {
@@ -51,7 +52,7 @@ public class NaiveSummaryGenerator extends AbstractSummaryGenerator {
         // Add all sentences into the list.
         for (Sentence sentence: sentenceList) {
             annotatedSentenceList.add(
-                    new AnnotatedSentence(sentence, 0));
+                    new AnnotatedSentence(parentKey, sentence, 0));
         }
         // Increase values of salience of each sentence.
         for (Entity entity: entityList) {

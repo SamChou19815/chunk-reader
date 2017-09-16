@@ -1,6 +1,9 @@
 package com.developersam.web.chunkreader.processor.summary;
 
 import com.developersam.web.model.datastore.DataStoreObject;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Text;
 import com.google.cloud.language.v1beta2.Sentence;
 import com.google.cloud.language.v1beta2.TextSpan;
 
@@ -9,7 +12,12 @@ import com.google.cloud.language.v1beta2.TextSpan;
  * a summary upon it.
  * @author Sam.
  */
-public class AnnotatedSentence {
+public class AnnotatedSentence extends DataStoreObject {
+
+    /**
+     * The key of the whole text.
+     */
+    private Key parentKey;
 
     /**
      * The original text of the sentence.
@@ -26,13 +34,32 @@ public class AnnotatedSentence {
     private double salience;
 
     /**
+     * Construct the annotated sentence and bind it to the database.
+     */
+    private AnnotatedSentence() {
+        super("TextSummary");
+    }
+
+    /**
+     * Construct the annotated sentence and bind it to the database.
+     * @param parentKey parent key of the text.
+     */
+    private AnnotatedSentence(Key parentKey) {
+        this();
+        setParentKey(parentKey);
+    }
+
+    /**
      * Construct an annotated sentence with its originally available
      * information.
+     * @param parentKey parent key of the text.
      * @param sentence raw text of the sentence.
      * @param position position of the sentence inside the original document.
      * @param salience good default value of salience.
      */
-    AnnotatedSentence(String sentence, int position, double salience) {
+    AnnotatedSentence(Key parentKey,
+                      String sentence, int position, double salience) {
+        this(parentKey);
         this.sentence = sentence;
         this.position = position;
         this.salience = salience;
@@ -40,14 +67,27 @@ public class AnnotatedSentence {
 
     /**
      * Construct an annotated sentence with a {@code Sentence}.
+     * @param parentKey parent key of the text.
      * @param sentence sentence object from Google.
      * @param salience good default value of salience.
      */
-    AnnotatedSentence(Sentence sentence, double salience) {
+    AnnotatedSentence(Key parentKey, Sentence sentence, double salience) {
+        this(parentKey);
         TextSpan textSpan = sentence.getText();
         this.sentence = textSpan.getContent();
         this.position = textSpan.getBeginOffset();
         this.salience = salience;
+    }
+
+    /**
+     * Construct an annotated sentence from a database object.
+     * @param textSummaryEntity text summary entity from the database.
+     */
+    AnnotatedSentence(Entity textSummaryEntity) {
+        this();
+        sentence = textToString(textSummaryEntity.getProperty("sentence"));
+        position = (int) textSummaryEntity.getProperty("position");
+        salience = (double) textSummaryEntity.getProperty("salience");
     }
 
     public String getSentence() {
@@ -68,6 +108,14 @@ public class AnnotatedSentence {
 
     public void increaseSalience(double increment) {
         salience += increment;
+    }
+
+    public void putIntoDatabase() {
+        Entity textSummaryEntity = getNewEntity();
+        textSummaryEntity.setProperty("sentence", new Text(sentence));
+        textSummaryEntity.setProperty("position", position);
+        textSummaryEntity.setProperty("salience", salience);
+        putIntoDatabase(textSummaryEntity);
     }
 
     @Override

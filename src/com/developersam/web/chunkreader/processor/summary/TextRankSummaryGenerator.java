@@ -30,7 +30,7 @@ public abstract class TextRankSummaryGenerator
     private void buildListOfAnnotatedSentences() {
         annotatedSentenceList = new ArrayList<>();
         for (Sentence sentence: sentenceList) {
-            annotatedSentenceList.add(new AnnotatedSentence(
+            annotatedSentenceList.add(new AnnotatedSentence(parentKey,
                     sentence, Math.random() * 1000));
         }
     }

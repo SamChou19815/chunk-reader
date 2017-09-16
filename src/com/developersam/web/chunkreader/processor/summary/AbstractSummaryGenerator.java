@@ -20,7 +20,7 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
     protected List<Sentence> sentenceList;
     protected List<Token> tokenList;
 
-    private Key parentKey;
+    protected Key parentKey;
 
     @Override
     public final void read(List<Entity> entityList,
@@ -48,11 +48,17 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
         this.parentKey = parentKey;
     }
 
+    /**
+     * Subclass should override this method in a ways that returns a list of
+     * annotated sentences with parentKey bounded to them.
+     * @return list of annotate sentences.
+     */
     protected abstract List<AnnotatedSentence> getEvaluatedSentences();
 
     @Override
     public final void process() {
-        new SummaryGeneratorDataStore(parentKey, getEvaluatedSentences())
-                .putIntoDatabase();
+        for (AnnotatedSentence annotatedSentence: getEvaluatedSentences()) {
+            annotatedSentence.putIntoDatabase();
+        }
     }
 }
