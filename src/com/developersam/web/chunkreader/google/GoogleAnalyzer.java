@@ -21,6 +21,10 @@ public class GoogleAnalyzer{
      */
     private Document doc;
     /**
+     * Response used to analyze syntax.
+     */
+    private AnalyzeSyntaxResponse response;
+    /**
      * Sentiment of the entire document.
      */
     private Sentiment sentiment;
@@ -46,6 +50,10 @@ public class GoogleAnalyzer{
         languageAPI = LanguageServiceClient.create();
         doc = Document.newBuilder()
                 .setContent(text).setType(Type.PLAIN_TEXT).build();
+        AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
+                .setDocument(doc)
+                .setEncodingType(EncodingType.UTF16).build();
+        response = languageAPI.analyzeSyntax(request);
         process();
     }
 
@@ -86,10 +94,6 @@ public class GoogleAnalyzer{
      * @throws IOException thrown when there is a problem finding sentences.
      */
     private void findSentences() throws IOException {
-        AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
-                .setDocument(doc)
-                .setEncodingType(EncodingType.UTF16).build();
-        AnalyzeSyntaxResponse response = languageAPI.analyzeSyntax(request);
         sentences = response.getSentencesList();
     }
 
@@ -98,10 +102,6 @@ public class GoogleAnalyzer{
      * @throws IOException thrown when there is a problem finding tokens.
      */
     private void findTokens() throws IOException {
-        AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
-                .setDocument(doc)
-                .setEncodingType(EncodingType.UTF16).build();
-        AnalyzeSyntaxResponse response = languageAPI.analyzeSyntax(request);
         tokens = response.getTokensList();
     }
 
