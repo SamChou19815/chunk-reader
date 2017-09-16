@@ -23,7 +23,7 @@ public abstract class TextRankSummaryGenerator
      * measure.
      * @param s1 sentence s1.
      * @param s2 sentence s2.
-     * @return the similarity between 2 sentences.
+     * @return the similarity between 2 sentences. 
      */
     protected abstract double calculateSimilarity(Sentence s1, Sentence s2);
 

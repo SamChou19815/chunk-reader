@@ -65,10 +65,10 @@ public class Util {
         }
         else if (score < 0.2) {
             if (magnitude < 2) {
-               sentimentScore = 0;
+               sentimentScore = 1;
             }
             else {
-                sentimentScore = 1;
+                sentimentScore = 2;
             }
         }
         else {
