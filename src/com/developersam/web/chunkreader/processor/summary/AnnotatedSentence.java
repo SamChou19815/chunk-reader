@@ -120,8 +120,8 @@ public class AnnotatedSentence extends DataStoreObject {
 
     @Override
     public String toString() {
-        return "{\n" + "sentence: '" + sentence +
-                "', \n position: " + position +
-                ", \n salience: " + salience + "}";
+        return "{sentence:\"" + sentence +
+                "\",position:" + position +
+                ",salience:" + salience + "}";
     }
 }

@@ -87,7 +87,9 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
 
     @Override
     public void process() {
-        new KnowledgeGraphDataStore(parentKey, nodes).putIntoDatabase();
+        for (KnowledgeNode node: nodes) {
+            new KnowledgeNodeDataStore(parentKey, node);
+        }
     }
 }
 
