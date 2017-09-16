@@ -9,8 +9,9 @@ import java.util.List;
 /**
  * Google Analyzer is used to simply extract the calculated results from Google
  * API.
+ * @author Sam, Max.
  */
-public class GoogleAnalyzer{
+public class GoogleAnalyzer {
 
     /**
      * Common Google Language API.
