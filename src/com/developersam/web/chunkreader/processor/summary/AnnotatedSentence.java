@@ -1,5 +1,6 @@
 package com.developersam.web.chunkreader.processor.summary;
 
+import com.developersam.web.model.datastore.DataStoreObject;
 import com.google.cloud.language.v1beta2.Sentence;
 import com.google.cloud.language.v1beta2.TextSpan;
 
@@ -49,6 +50,10 @@ public class AnnotatedSentence {
         this.salience = salience;
     }
 
+    public String getSentence() {
+        return sentence;
+    }
+
     public int getPosition() {
         return position;
     }
@@ -63,13 +68,6 @@ public class AnnotatedSentence {
 
     public void increaseSalience(double increment) {
         salience += increment;
-    }
-
-    /**
-     * Store the database into the database.
-     */
-    public void storeIntoDatabase() {
-        // TODO
     }
 
     @Override

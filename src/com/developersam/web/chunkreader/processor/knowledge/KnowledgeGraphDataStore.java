@@ -16,7 +16,7 @@ class KnowledgeGraphDataStore extends DataStoreObject {
         this.nodes = nodes;
     }
 
-    public void putIntoDatabase() {
+    void putIntoDatabase() {
         for (KnowledgeNode node: nodes) {
             Entity knowledgeGraphEntity = getNewEntity();
             /*
