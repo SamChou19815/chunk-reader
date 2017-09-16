@@ -11,20 +11,38 @@ public class AnnotatedSentenceSalienceBuilder {
 
     private List<AnnotatedSentence> asList;
     private double[][] similarityMatrix;
+    private int count;
+    private  double[] temp_salience;
 
 
     /**
-     * Construct AnnotatedSentenceSalienceBuilder.
+     * Construct ANnotatedSentenceSalienceBuilder
      * Initialize sentenceSalience list with the length of AnnotatedSentences
-     * @param as annotated sentence list.
+     * @param as
      */
-    public AnnotatedSentenceSalienceBuilder(List<AnnotatedSentence> as,
-                                            double[][] similarityMatrix) {
+    public AnnotatedSentenceSalienceBuilder(List<AnnotatedSentence> as, double[][] similarityMatrix) {
         asList = as;
         this.similarityMatrix = similarityMatrix;
+        count = 0;
+        temp_salience = new double[as.size()];
+        recordSalience();
     }
 
+    private void recordSalience(){
+        for(int i = 0 ; i < asList.size(); i ++){
+            temp_salience[i] = asList.get(i).getSalience();
+        }
 
+    }
+
+    private boolean smallChange(double[] temp){
+        for(int i = 0 ; i < asList.size(); i ++){
+            if(Math.abs(temp[i] - asList.get(i).getSalience())/temp[i] > 0.01){
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      *
@@ -35,7 +53,13 @@ public class AnnotatedSentenceSalienceBuilder {
      */
     public void calculateSentenceSalience(int i) {
         double sumRatio = 0.0;
-        double sentenceSalienceOrig = asList.get(i).getSalience();
+
+        if(count == 100){
+            count = 0;
+            if(smallChange(temp_salience)) return;
+            recordSalience();
+        }
+        else count ++;
 
         for (int j=0; j<asList.size(); j++) {
             if (j != i) {
@@ -56,12 +80,11 @@ public class AnnotatedSentenceSalienceBuilder {
 
         asList.get(i).setSalience(0.2 + 0.8*sumRatio);
 
-        if ((Math.abs(asList.get(i).getSalience()-sentenceSalienceOrig)/sentenceSalienceOrig)<0.01) {
-            return;
-        }
-        else {
-            calculateSentenceSalience(Math.floorMod((i+1), asList.size()));
-        }
+        int random_next_point = (int)(Math.random()*asList.size());
+        calculateSentenceSalience(Math.floorMod((random_next_point), asList.size()));
+
+
     }
 
 }
+
