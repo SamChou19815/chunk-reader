@@ -1,6 +1,9 @@
 package com.developersam.web.chunkreader.processor;
 
+import com.developersam.web.model.datastore.DataStoreObject;
+import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Text;
 
 import java.io.IOException;
 
@@ -9,12 +12,15 @@ import java.io.IOException;
  * other processors.
  * @author Sam.
  */
-public class MainProcessor implements Processor {
+public class MainProcessor extends DataStoreObject implements Processor {
 
     private ProcessorFactory factory;
+    private String text;
 
     public MainProcessor(String text) throws IOException {
+        super("Text");
         factory = new ProcessorFactory(text);
+        this.text = text;
     }
 
     /**
@@ -27,7 +33,11 @@ public class MainProcessor implements Processor {
     @Override
     public void process() {
         // Step 1: Add Text into DB.
-
+        Entity textEntity = getNewEntity();
+        textEntity.setProperty("rawText", new Text(text));
+        putIntoDatabase(textEntity);
+        Key parentKey = textEntity.getKey();
+        factory.setParentKey(parentKey);
         // Step 2: Call other processors.
         factory.createTypePredictor().process();
         factory.createKnowledgeGraphBuilder().process();

@@ -18,7 +18,7 @@ public class TypePredictorClass implements TypePredictor{
 
     @Override
     public void setParentKey(Key parentKey) {
-        
+
     }
 
     public void process() {
