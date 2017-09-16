@@ -7,7 +7,11 @@ import com.google.cloud.language.v1beta2.Sentiment;
 
 public class TypePredictorClass implements TypePredictor{
 
-    int sentimentScore;
+    /**
+     * Sentiment score is essentially the type of article.
+     */
+    private int sentimentScore;
+
     public TypePredictorClass () {
 
     }
