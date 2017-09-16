@@ -8,16 +8,18 @@ import java.util.List;
 
 public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
 
-    private ArrayList<ArrayList<KnowledgeNode>> graph;
+    //private ArrayList<ArrayList<KnowledgeNode>> graph;
     private List<KnowledgeNode> nodes;
     private final static int TYPE_SIZE = 6;
 
     public KnowledgeGraphBuilderImp() {
+        /*
         graph = new ArrayList<>();
         for (int i = 0; i < TYPE_SIZE; i++) {
             ArrayList<KnowledgeNode> l = new ArrayList<>();
             graph.add(l);
         }
+        */
     }
 
     public void read(List<Entity> entityList) {
@@ -32,6 +34,7 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
      * The nodes under same category is arranged in increasing salience.
      * (no longer applies)
      */
+    /*
     protected void nodesProcess() {
         // Add a node to different parts of the graph according to their types.
         for (KnowledgeNode n: nodes) {
@@ -57,17 +60,22 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
                 default:
             }
         }
-        /*
+
+
+
+
         // Sort each type of collection of nodes according to their salience.
         for (int i = 0; i < graph.size(); i++) {
             graph.get(i).sort((n1, n2) -> (Double.compare(n1.getSalience(),
             n2.getSalience())));
         }
-        */
+
     }
 
+    */
+
     public void process() {
-        nodesProcess();
+
     }
 }
 

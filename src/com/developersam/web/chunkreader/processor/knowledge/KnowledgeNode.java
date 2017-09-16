@@ -12,7 +12,7 @@ import static com.developersam.web.chunkreader.processor.Util.getSentimentScore;
 public class KnowledgeNode {
     private Entity entity;
     private String name;
-    private Entity.Type type;
+    private int type;
     private String metadataURL;
     private float salience;
     private int sentimentScore;
@@ -22,7 +22,7 @@ public class KnowledgeNode {
     public KnowledgeNode(Entity e){
         entity = e;
         name = entity.getName();
-        type = entity.getType();
+        type = entity.getType().getNumber();
         // potentially problematic, because wikipedia may not be the only map
         metadataURL = entity.getMetadataMap().get("wikipedia_url");
         salience = entity.getSalience();
@@ -45,7 +45,7 @@ public class KnowledgeNode {
         return name;
     }
 
-    public Entity.Type getType(){
+    public int getType(){
         return type;
     }
 
