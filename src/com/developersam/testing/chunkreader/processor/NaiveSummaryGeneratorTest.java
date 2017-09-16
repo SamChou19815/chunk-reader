@@ -1,28 +1,37 @@
 package com.developersam.testing.chunkreader.processor;
 
+import com.developersam.web.chunkreader.google.GoogleAnalyzer;
+import com.developersam.web.chunkreader.processor.Processor;
+import com.developersam.web.chunkreader.processor.ProcessorFactory;
 import com.developersam.web.chunkreader.processor.summary.NaiveSummaryGenerator;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
-@RunWith(Arquillian.class)
 public class NaiveSummaryGeneratorTest {
-    @Test
-    public void getEvaluatedSentences() throws Exception {
 
+
+    private ProcessorFactory factory;
+
+    public NaiveSummaryGeneratorTest() {
+        try {
+            factory = new ProcessorFactory("Google, headquartered " +
+                    "in Mountain View, unveiled the new Android phone at the " +
+                    "Consumer Electronic Show.  Sundar Pichai said in his " +
+                    "keynote that users love their new Android phones.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(NaiveSummaryGenerator.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+    @Test
+    public void getEvaluatedSentences() throws Exception {
+        NaiveSummaryGenerator naiveSummaryGenerator =
+                (NaiveSummaryGenerator) factory.createSummaryGenerator();
+        naiveSummaryGenerator.process();
     }
 
 }
