@@ -1,10 +1,10 @@
 package com.developersam.web.chunkreader.processor.knowledge;
 
 import com.developersam.web.chunkreader.processor.KnowledgeGraphBuilder;
+import com.developersam.web.model.datastore.DataStoreObject;
 import com.google.appengine.api.datastore.Key;
 import com.google.cloud.language.v1beta2.Entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
@@ -12,6 +12,8 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
     //private ArrayList<ArrayList<KnowledgeNode>> graph;
     private List<KnowledgeNode> nodes;
     private final static int TYPE_SIZE = 6;
+
+    private Key parentKey;
 
     public KnowledgeGraphBuilderImp() {
         /*
@@ -25,9 +27,10 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
 
     @Override
     public void setParentKey(Key parentKey) {
-
+        this.parentKey = parentKey;
     }
 
+    @Override
     public void read(List<Entity> entityList) {
         for (int i = 0; i < entityList.size(); i++) {
             KnowledgeNode n = new KnowledgeNode(entityList.get(i));
@@ -80,8 +83,9 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
 
     */
 
+    @Override
     public void process() {
-
+        new KnowledgeGraphDataStore(parentKey, nodes).putIntoDatabase();
     }
 }
 
