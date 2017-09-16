@@ -10,6 +10,7 @@ import java.util.List;
 import static com.developersam.web.chunkreader.processor.Util.getSentimentScore;
 
 public class KnowledgeNode {
+
     private Entity entity;
     private String name;
     private int type;
@@ -59,15 +60,15 @@ public class KnowledgeNode {
         return metadataURL;
     }
 
-    public float getSalience(){
+    public double getSalience(){
         return salience;
     }
 
-    public float getSentimentScore(){
+    public double getSentimentScore(){
         return sentimentScore;
     }
 
-    public ArrayList<int[]> getEntityMentionsData (){
+    public List<int[]> getEntityMentionsData(){
         return entityMentions;
     }
 
