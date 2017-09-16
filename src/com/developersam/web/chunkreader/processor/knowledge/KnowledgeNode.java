@@ -1,5 +1,6 @@
-package com.developersam.web.chunkreader.processor;
+package com.developersam.web.chunkreader.processor.knowledge;
 
+import com.developersam.web.chunkreader.processor.Util;
 import com.google.cloud.language.v1beta2.Entity;
 import com.google.cloud.language.v1beta2.EntityMention;
 
@@ -22,6 +23,7 @@ public class KnowledgeNode {
         entity = e;
         name = entity.getName();
         type = entity.getType();
+        // potentially problematic, because wikipedia may not be the only map
         metadataURL = entity.getMetadataMap().get("wikipedia_url");
         salience = entity.getSalience();
         sentimentScore = Util.getSentimentScore(entity.getSentiment());
