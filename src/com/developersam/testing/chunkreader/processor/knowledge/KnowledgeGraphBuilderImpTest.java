@@ -1,4 +1,4 @@
-package com.developersam.testing.chunkreader.processor;
+package com.developersam.testing.chunkreader.processor.knowledge;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

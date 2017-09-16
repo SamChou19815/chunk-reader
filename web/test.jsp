@@ -1,3 +1,4 @@
+<%@ page import="com.developersam.web.chunkreader.processor.MainProcessor" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="/WEB-INF/custom.tld" prefix="t" %>
 <!DOCTYPE HTML>
@@ -67,6 +68,13 @@
             </t:CardActions>
         </t:Card>
     </main>
+    <%
+        MainProcessor processor = new MainProcessor("Google, " +
+                "headquartered in Mountain View, unveiled the new Android " +
+                "phone at the Consumer Electronic Show.  Sundar Pichai said " +
+                "in his keynote that users love their new Android phones.");
+        processor.process();
+    %>
 </div>
 </body>
 </html>

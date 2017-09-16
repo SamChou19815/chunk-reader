@@ -1,4 +1,4 @@
-package com.developersam.testing.chunkreader.processor;
+package com.developersam.testing.chunkreader.processor.summary;
 
 import com.developersam.web.chunkreader.google.GoogleAnalyzer;
 import com.developersam.web.chunkreader.processor.Processor;

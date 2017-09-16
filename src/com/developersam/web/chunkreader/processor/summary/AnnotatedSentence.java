@@ -83,7 +83,7 @@ public class AnnotatedSentence extends DataStoreObject {
      * Construct an annotated sentence from a database object.
      * @param textSummaryEntity text summary entity from the database.
      */
-    AnnotatedSentence(Entity textSummaryEntity) {
+    public AnnotatedSentence(Entity textSummaryEntity) {
         this();
         sentence = textToString(textSummaryEntity.getProperty("sentence"));
         position = (int) textSummaryEntity.getProperty("position");
