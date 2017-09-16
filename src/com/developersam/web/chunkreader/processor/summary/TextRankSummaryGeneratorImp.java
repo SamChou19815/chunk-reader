@@ -27,19 +27,12 @@ public class TextRankSummaryGeneratorImp extends TextRankSummaryGenerator{
         salienceBuilder.calculateSentenceSalience(randomStartingPoint);
     }
 
-    @Override
-    public void process() {
+
+    protected List<AnnotatedSentence> getEvaluatedSentences(){
         buildListOfAnnotatedSentences();
         buildSimilarityMatrix();
         setSalience();
-        for (AnnotatedSentence annotatedSentence: getEvaluatedSentences()) {
-            annotatedSentence.putIntoDatabase();
-        }
-    }
-
-    public List<AnnotatedSentence> getResultSentences(){
         return annotatedSentenceList;
-    };
-
+    }
 
 }

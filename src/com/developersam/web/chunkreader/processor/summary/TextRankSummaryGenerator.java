@@ -64,15 +64,4 @@ public abstract class TextRankSummaryGenerator
         // TODO
     }
 
-    @Override
-    protected List<AnnotatedSentence> getEvaluatedSentences() {
-        // Step 1: Build a list of annotated sentences
-        buildListOfAnnotatedSentences();
-        // Step 2: Build similarity matrix
-        buildSimilarityMatrix();
-        // Step 3: Random visiting of graph
-        randomVisitUntilConverge();
-        // Step 4: Return!
-        return annotatedSentenceList;
-    }
 }
