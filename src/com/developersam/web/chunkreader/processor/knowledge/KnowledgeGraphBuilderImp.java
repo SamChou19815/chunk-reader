@@ -26,6 +26,10 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
         */
     }
 
+    public List<KnowledgeNode> getNodes() {
+        return nodes;
+    }
+
     @Override
     public void setParentKey(Key parentKey) {
         this.parentKey = parentKey;

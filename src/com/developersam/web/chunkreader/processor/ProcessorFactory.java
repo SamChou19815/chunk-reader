@@ -1,7 +1,9 @@
 package com.developersam.web.chunkreader.processor;
 
 import com.developersam.web.chunkreader.google.GoogleAnalyzer;
+import com.developersam.web.chunkreader.processor.knowledge.KnowledgeGraphBuilderImp;
 import com.developersam.web.chunkreader.processor.summary.NaiveSummaryGenerator;
+import com.developersam.web.chunkreader.processor.type.TypePredictorClass;
 import com.google.appengine.api.datastore.Key;
 
 import java.io.IOException;
@@ -35,7 +37,7 @@ public class ProcessorFactory {
      * @return a processor with all necessary information initialized.
      */
     public Processor createTypePredictor() {
-        TypePredictor p = null; // TODO when constructor is available.
+        TypePredictor p = new TypePredictorClass(); // TODO when constructor is available.
         p.read(googleAnalyzer.getSentiment());
         p.setParentKey(parentKey);
         return p;
@@ -46,7 +48,7 @@ public class ProcessorFactory {
      * @return a processor with all necessary information initialized.
      */
     public Processor createKnowledgeGraphBuilder() {
-        KnowledgeGraphBuilder p = null; // TODO when constructor is available.
+        KnowledgeGraphBuilder p = new KnowledgeGraphBuilderImp(); // TODO when constructor is available.
         p.read(googleAnalyzer.getEntities());
         p.setParentKey(parentKey);
         return p;

@@ -30,6 +30,10 @@ public class TypePredictorClass extends DataStoreObject
         this.parentKey = parentKey;
     }
 
+    public int getSentimentScore(){
+        return sentimentScore;
+    }
+
     @Override
     public void process() {
         Entity textEntity = new Entity(parentKey);

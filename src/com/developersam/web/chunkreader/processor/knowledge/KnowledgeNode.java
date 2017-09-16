@@ -44,6 +44,7 @@ public class KnowledgeNode {
         }
     }
 
+
     public Entity getEntity() {
         return entity;
     }
