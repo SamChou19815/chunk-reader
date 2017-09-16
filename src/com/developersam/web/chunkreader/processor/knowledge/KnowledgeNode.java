@@ -23,6 +23,12 @@ public class KnowledgeNode {
         entity = e;
         name = entity.getName();
         type = entity.getType().getNumber();
+        /*
+         * Type - Number relation:
+         * https://googleapis.github.io/googleapis/java/
+         * proto-google-cloud-language-v1/0.1.18/apidocs/com/google/cloud/
+         * language/v1/Entity.Type.html
+         */
         // potentially problematic, because wikipedia may not be the only map
         metadataURL = entity.getMetadataMap().get("wikipedia_url");
         salience = entity.getSalience();
