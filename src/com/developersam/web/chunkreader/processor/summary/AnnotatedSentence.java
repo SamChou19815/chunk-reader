@@ -25,11 +25,16 @@ public class AnnotatedSentence {
      * information.
      * @param sentence raw text of the sentence.
      * @param position position of the sentence inside the original document.
+     * @param salience good default value of salience.
      */
-    public AnnotatedSentence(String sentence, int position) {
+    AnnotatedSentence(String sentence, int position, double salience) {
         this.sentence = sentence;
         this.position = position;
-        this.salience = Math.random(); // random initialization.
+        this.salience = salience;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public double getSalience() {
@@ -38,6 +43,10 @@ public class AnnotatedSentence {
 
     public void setSalience(double salience) {
         this.salience = salience;
+    }
+
+    public void increaseSalience(double increment) {
+        salience += increment;
     }
 
     /**
