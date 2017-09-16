@@ -1,5 +1,8 @@
 package com.developersam.web.chunkreader.processor.summary;
 
+import com.google.cloud.language.v1beta2.Sentence;
+import com.google.cloud.language.v1beta2.TextSpan;
+
 /**
  * Annotated Sentence is a sentence with all necessary annotations to build
  * a summary upon it.
@@ -31,6 +34,18 @@ public class AnnotatedSentence {
     AnnotatedSentence(String sentence, int position, double salience) {
         this.sentence = sentence;
         this.position = position;
+        this.salience = salience;
+    }
+
+    /**
+     * Construct an annotated sentence with a {@code Sentence}.
+     * @param sentence sentence object from Google.
+     * @param salience good default value of salience.
+     */
+    AnnotatedSentence(Sentence sentence, double salience) {
+        TextSpan textSpan = sentence.getText();
+        this.sentence = textSpan.getContent();
+        this.position = textSpan.getBeginOffset();
         this.salience = salience;
     }
 

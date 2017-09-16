@@ -2,6 +2,7 @@ package com.developersam.web.chunkreader.processor.summary;
 
 import com.google.cloud.language.v1beta2.Sentence;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,9 @@ import java.util.List;
 public abstract class TextRankSummaryGenerator
         extends AbstractSummaryGenerator {
 
+    private List<AnnotatedSentence> annotatedSentenceList;
+    private double[][] similarityMatrix;
+
     /**
      * Calculate the similarity between two sentences.
      * Subclasses should implement this if they have different similarity
@@ -23,8 +27,52 @@ public abstract class TextRankSummaryGenerator
      */
     protected abstract double calculateSimilarity(Sentence s1, Sentence s2);
 
+    private void buildListOfAnnotatedSentences() {
+        annotatedSentenceList = new ArrayList<>();
+        for (Sentence sentence: sentenceList) {
+            annotatedSentenceList.add(new AnnotatedSentence(
+                    sentence, Math.random() * 1000));
+        }
+    }
+
+    private void buildSimilarityMatrix() {
+        final int sentenceListSize = sentenceList.size();
+        similarityMatrix = new double[sentenceListSize][sentenceListSize];
+        for (int i = 0; i < sentenceList.size(); i++) {
+            Sentence s1 = sentenceList.get(i);
+            for (int j = 0; j < sentenceList.size(); j++) {
+                if (i == j) {
+                    similarityMatrix[i][j] = 0;
+                } else {
+                    Sentence s2 = sentenceList.get(j);
+                    similarityMatrix[i][j] = calculateSimilarity(s1, s2);
+                }
+            }
+        }
+    }
+
+    private void randomVisit() {
+        int randomStartingPoint =
+                (int) (Math.random() * annotatedSentenceList.size());
+        AnnotatedSentence randomSentence =
+                annotatedSentenceList.get(randomStartingPoint);
+        
+        // TODO
+    }
+
+    private void randomVisitUntilConverge() {
+        // TODO
+    }
+
     @Override
     protected List<AnnotatedSentence> getEvaluatedSentences() {
-        return null;
+        // Step 1: Build a list of annotated sentences
+        buildListOfAnnotatedSentences();
+        // Step 2: Build similarity matrix
+        buildSimilarityMatrix();
+        // Step 3: Random visiting of graph
+        randomVisitUntilConverge();
+        // Step 4: Return!
+        return annotatedSentenceList;
     }
 }

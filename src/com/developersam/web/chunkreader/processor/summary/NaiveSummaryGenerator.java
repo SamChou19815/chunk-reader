@@ -50,11 +50,8 @@ public class NaiveSummaryGenerator extends AbstractSummaryGenerator {
         List<AnnotatedSentence> annotatedSentenceList = new ArrayList<>();
         // Add all sentences into the list.
         for (Sentence sentence: sentenceList) {
-            TextSpan textSpan = sentence.getText();
-            AnnotatedSentence annotatedSentence = new AnnotatedSentence(
-                    textSpan.getContent(), textSpan.getBeginOffset(),
-                    0);
-            annotatedSentenceList.add(annotatedSentence);
+            annotatedSentenceList.add(
+                    new AnnotatedSentence(sentence, 0));
         }
         // Increase values of salience of each sentence.
         for (Entity entity: entityList) {
