@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <t:Header title="Developer Sam" selected="0"/>
+    <t:Header title="Chunk Reader" selected="0"/>
     <main class="mdl-layout__content">
         <t:Card title="Developer">
             <t:CardText>Specialized in machine learning and web development.</t:CardText>
