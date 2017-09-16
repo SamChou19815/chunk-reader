@@ -7,7 +7,6 @@ import com.google.cloud.language.v1beta2.EntityMention;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.developersam.web.chunkreader.processor.Util.getSentimentScore;
 
 public class KnowledgeNode {
 
@@ -65,7 +64,7 @@ public class KnowledgeNode {
         return salience;
     }
 
-    public double getSentimentScore(){
+    public int getSentimentScore(){
         return sentimentScore;
     }
 
