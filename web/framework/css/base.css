@@ -1,0 +1,60 @@
+body{
+    background: #DDD;
+}
+/* Header */
+.mdl-navigation__link.is-active{
+    background: #DEDEDE
+}
+.mdl-layout__header{
+    background: black;
+}
+
+/* Card */
+/*  General */
+.mdl-card{
+    margin: 1em auto;
+    border-radius: 1px;
+    min-height: 0;
+    color: #FFF
+}
+.mdl-card__media{
+    background-color: transparent;
+    text-align: center;
+}
+.mdl-card__supporting-text.mdl-card--border{
+    /* Fix the problem that mdl-card__supporting-text is 90% width,
+    which results in an incomplete border bottom */
+    width: 100%;
+}
+a.title-link{
+    text-decoration: none;
+    font-weight: 300;
+}
+/*  Mobile */
+@media(max-width: 600px) {
+    .mdl-card {
+        width: 95%;
+    }
+}
+/*  Tablet */
+@media(max-width: 900px) and (min-width:600px){
+    .mdl-card{
+        width: 90%;
+    }
+}
+/*  Desktop */
+@media(min-width: 900px){
+    .mdl-card{
+        width: 700px;
+    }
+}
+
+/* Input */
+.mdl-textfield.mdl-js-textfield{
+    width: 100%;
+}
+
+/* Progress Bar */
+.mdl-progress.mdl-js-progress.mdl-progress__indeterminate {
+    width: 100%;
+}

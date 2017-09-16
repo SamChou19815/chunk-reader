@@ -1,0 +1,36 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>Scheduler Custom Tags</short-name>
+
+    <tag>
+        <name>SchedulerItemCard</name>
+        <tag-class>com.developersam.web.view.tags.scheduler.SchedulerItemCardTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>schedulerItem</name>
+            <required>true</required>
+            <type>com.developersam.web.model.scheduler.SchedulerItem</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>SchedulerAddItemCard</name>
+        <tag-class>com.developersam.web.view.tags.scheduler.SchedulerAddItemCardTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+
+    <tag>
+        <name>SchedulerSettingsCard</name>
+        <tag-class>com.developersam.web.view.tags.scheduler.SchedulerSettingsCardTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>schedulerUser</name>
+            <required>true</required>
+            <type>com.developersam.web.model.scheduler.SchedulerUser</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>
