@@ -7,6 +7,11 @@ import com.google.cloud.language.v1beta2.Token;
 
 import java.util.List;
 
+/**
+ * AbstractSummaryGenerator is responsible for provide some common
+ * functionality for all implementations of summary generator.
+ * @author Sam.
+ */
 abstract class AbstractSummaryGenerator implements SummaryGenerator {
 
     protected List<Entity> entityList;
@@ -37,7 +42,7 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
 
     @Override
     public void process() {
-        List<AnnotatedSentence> sentenceList = getEvaluatedSentences();
+        List<AnnotatedSentence> annotatedSentenceList = getEvaluatedSentences();
         // TODO some code to throw sentence list into the database.
     }
 }

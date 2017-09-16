@@ -3,6 +3,7 @@ package com.developersam.web.chunkreader.processor.summary;
 /**
  * Annotated Sentence is a sentence with all necessary annotations to build
  * a summary upon it.
+ * @author Sam.
  */
 public class AnnotatedSentence {
 

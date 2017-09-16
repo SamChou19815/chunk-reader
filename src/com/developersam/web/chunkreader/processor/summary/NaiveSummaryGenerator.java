@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * A naive summary generator decides the importance of sentence simply by
  * summing up the salience of each keyword in it.
+ * @author Sam.
  */
 public class NaiveSummaryGenerator extends AbstractSummaryGenerator {
 
@@ -30,7 +31,7 @@ public class NaiveSummaryGenerator extends AbstractSummaryGenerator {
             }
         }
     }
-    
+
     @Override
     protected List<AnnotatedSentence> getEvaluatedSentences() {
         List<AnnotatedSentence> annotatedSentenceList = new ArrayList<>();
