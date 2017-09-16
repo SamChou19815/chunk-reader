@@ -1,6 +1,7 @@
 package com.developersam.web.chunkreader.processor.knowledge;
 
 import com.developersam.web.chunkreader.processor.KnowledgeGraphBuilder;
+import com.google.appengine.api.datastore.Key;
 import com.google.cloud.language.v1beta2.Entity;
 
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
             graph.add(l);
         }
         */
+    }
+
+    @Override
+    public void setParentKey(Key parentKey) {
+
     }
 
     public void read(List<Entity> entityList) {

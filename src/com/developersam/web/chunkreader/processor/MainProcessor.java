@@ -1,5 +1,7 @@
 package com.developersam.web.chunkreader.processor;
 
+import com.google.appengine.api.datastore.Key;
+
 import java.io.IOException;
 
 /**
@@ -14,6 +16,13 @@ public class MainProcessor implements Processor {
     public MainProcessor(String text) throws IOException {
         factory = new ProcessorFactory(text);
     }
+
+    /**
+     * This method is empty. Parent key is meaningless for parent itself.
+     * @param parentKey parent key.
+     */
+    @Override
+    public void setParentKey(Key parentKey) {}
 
     @Override
     public void process() {

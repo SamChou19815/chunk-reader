@@ -1,6 +1,7 @@
 package com.developersam.web.chunkreader.processor.summary;
 
 import com.developersam.web.chunkreader.processor.SummaryGenerator;
+import com.google.appengine.api.datastore.Key;
 import com.google.cloud.language.v1beta2.Entity;
 import com.google.cloud.language.v1beta2.Sentence;
 import com.google.cloud.language.v1beta2.Token;
@@ -38,6 +39,11 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
                 o2.getText().getBeginOffset())
         ));
         this.tokenList = tokenList;
+    }
+
+    @Override
+    public void setParentKey(Key parentKey) {
+
     }
 
     protected abstract List<AnnotatedSentence> getEvaluatedSentences();
