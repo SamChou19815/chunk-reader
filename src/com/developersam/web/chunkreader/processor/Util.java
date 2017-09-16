@@ -7,9 +7,9 @@ import com.google.cloud.language.v1beta2.Sentiment;
  *
  * Put all helper methods here
  */
-public class util {
+public class Util {
 
-    public util () {
+    public Util () {
         //construct util object
     }
 
@@ -27,19 +27,18 @@ public class util {
         double magnitude = sentiment.getMagnitude();
         int sentimentScore = 0;
 
-        /**
-         * scoreType:
+        /*
+         * score:
          * < -0.2 ==> negative
          * -0.2 <= score < 0.2 ==> neutral
          * >= 0.2 ==> positive
          *
-         * magType:
+         * magnitude:
          * < 2 ==> slightly
          * >= 2 ==> strongly
          */
-        char magType = ' ';
 
-        /**
+        /*
          * if length != 1, then it is an article
          * log the length to process the magnitude
          */
@@ -47,7 +46,7 @@ public class util {
             magnitude = Math.log(length);
         }
 
-        /**
+        /*
          * decide the type
          * 1: neutral weak = mixed
          * 2: neutral strong = neutral
@@ -57,7 +56,7 @@ public class util {
          * 6: pos strong
          */
         if (score < -0.2) {
-            if (magType < 2) {
+            if (magnitude < 2) {
                 sentimentScore = 3;
             }
             else {
@@ -65,7 +64,7 @@ public class util {
             }
         }
         else if (score < 0.2) {
-            if (magType < 2) {
+            if (magnitude < 2) {
                sentimentScore = 0;
             }
             else {
@@ -73,7 +72,7 @@ public class util {
             }
         }
         else {
-            if (magType < 2) {
+            if (magnitude < 2) {
                 sentimentScore = 5;
             }
             else {
