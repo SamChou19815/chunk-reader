@@ -1,6 +1,7 @@
 package com.developersam.web.chunkreader.processor;
 
 import com.developersam.web.chunkreader.google.GoogleAnalyzer;
+import com.developersam.web.chunkreader.processor.summary.NaiveSummaryGenerator;
 
 import java.io.IOException;
 
@@ -48,11 +49,11 @@ public class ProcessorFactory {
      * @return a processor with all necessary information initialized.
      */
     public Processor createSummaryGenerator() {
-        SummaryGenerator p = null; // TODO when constructor is available.
+        SummaryGenerator p = new NaiveSummaryGenerator();
         p.read(googleAnalyzer.getEntities(),
                 googleAnalyzer.getSentences(),
                 googleAnalyzer.getTokens());
-        return null;
+        return p;
     }
 
 }
