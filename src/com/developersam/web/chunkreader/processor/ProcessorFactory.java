@@ -3,6 +3,7 @@ package com.developersam.web.chunkreader.processor;
 import com.developersam.web.chunkreader.google.GoogleAnalyzer;
 import com.developersam.web.chunkreader.processor.knowledge.KnowledgeGraphBuilderImp;
 import com.developersam.web.chunkreader.processor.summary.NaiveSummaryGenerator;
+import com.developersam.web.chunkreader.processor.summary.TextRankSummaryGeneratorImp;
 import com.developersam.web.chunkreader.processor.type.TypePredictorClass;
 import com.google.appengine.api.datastore.Key;
 
@@ -59,7 +60,8 @@ public class ProcessorFactory {
      * @return a processor with all necessary information initialized.
      */
     public Processor createSummaryGenerator() {
-        SummaryGenerator p = new NaiveSummaryGenerator();
+        //SummaryGenerator p = new NaiveSummaryGenerator();
+        SummaryGenerator p = new TextRankSummaryGeneratorImp();
         p.read(googleAnalyzer.getEntities(),
                 googleAnalyzer.getSentences(),
                 googleAnalyzer.getTokens());

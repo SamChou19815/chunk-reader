@@ -27,7 +27,7 @@ public abstract class TextRankSummaryGenerator
      */
     protected abstract double calculateSimilarity(Sentence s1, Sentence s2);
 
-    private void buildListOfAnnotatedSentences() {
+    protected void buildListOfAnnotatedSentences() {
         annotatedSentenceList = new ArrayList<>();
         for (Sentence sentence: sentenceList) {
             annotatedSentenceList.add(new AnnotatedSentence(parentKey,
@@ -35,7 +35,7 @@ public abstract class TextRankSummaryGenerator
         }
     }
 
-    private void buildSimilarityMatrix() {
+    protected void buildSimilarityMatrix() {
         final int sentenceListSize = sentenceList.size();
         similarityMatrix = new double[sentenceListSize][sentenceListSize];
         for (int i = 0; i < sentenceList.size(); i++) {

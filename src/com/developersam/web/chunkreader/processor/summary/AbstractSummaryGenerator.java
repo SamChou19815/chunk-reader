@@ -56,9 +56,10 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
     protected abstract List<AnnotatedSentence> getEvaluatedSentences();
 
     @Override
-    public final void process() {
+    public void process() {
         for (AnnotatedSentence annotatedSentence: getEvaluatedSentences()) {
             annotatedSentence.putIntoDatabase();
         }
     }
+
 }

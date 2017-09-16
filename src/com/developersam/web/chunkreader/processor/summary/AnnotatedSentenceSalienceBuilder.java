@@ -8,31 +8,21 @@ import java.util.List;
 
 public class AnnotatedSentenceSalienceBuilder {
 
-    private double[] sentenceSalience;
-    private ArrayList<AnnotatedSentence> asList;
-    private WeightCalculator wc;
 
-    public AnnotatedSentenceSalienceBuilder() {
+    private List<AnnotatedSentence> asList;
+    private double[][] similarityMatri;
 
-    }
 
     /**
      * Construct ANnotatedSentenceSalienceBuilder
      * Initialize sentenceSalience list with the length of AnnotatedSentences
      * @param as
      */
-    public AnnotatedSentenceSalienceBuilder(ArrayList<AnnotatedSentence> as, List<Entity> entityList) {
-        wc = new WeightCalculator(entityList, as);
-        sentenceSalience = new double[as.size()];
-        for (int i=0; i<as.size(); i++) {
-            sentenceSalience[i] = 1;
-        }
+    public AnnotatedSentenceSalienceBuilder(List<AnnotatedSentence> as, double[][] similarityMatri) {
         asList = as;
+        this.similarityMatri = similarityMatri;
     }
 
-    public double[] getSentenceSalience() {
-        return sentenceSalience;
-    }
 
 
     /**
@@ -44,28 +34,28 @@ public class AnnotatedSentenceSalienceBuilder {
      */
     public void calculateSentenceSalience(int i) {
         double sumRatio = 0.0;
-        double sentenceSalienceOrig = sentenceSalience[i];
+        double sentenceSalienceOrig = asList.get(i).getSalience();
 
         for (int j=0; j<asList.size(); j++) {
             if (j != i) {
-                double weightji = wc.weight(asList.get(j), asList.get(i));
+                double weightji = similarityMatri[j][i];
                 double sumWeightjk = 0.0;
 
                 for (int k=0; k<asList.size(); k++) {
                     if (k != j) {
-                        sumWeightjk = sumWeightjk + wc.weight(asList.get(j), asList.get(k));
+                        sumWeightjk = sumWeightjk + similarityMatri[j][k];
                     }
                 }
 
-                double ratio = weightji / sumWeightjk * sentenceSalience[j];
+                double ratio = weightji / sumWeightjk * asList.get(j).getSalience();
 
                 sumRatio = sumRatio + ratio;
             }
         }
 
-        sentenceSalience[i] = 0.2 + 0.8*sumRatio;
+        asList.get(i).setSalience(0.2 + 0.8*sumRatio);
 
-        if ((Math.abs(sentenceSalience[i]-sentenceSalienceOrig)/sentenceSalienceOrig)<0.01) {
+        if ((Math.abs(asList.get(i).getSalience()-sentenceSalienceOrig)/sentenceSalienceOrig)<0.01) {
             return;
         }
         else {

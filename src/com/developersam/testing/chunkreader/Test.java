@@ -1,13 +1,17 @@
 package com.developersam.testing.chunkreader;
 
 import com.developersam.web.chunkreader.google.GoogleAnalyzer;
+import com.developersam.web.chunkreader.processor.Processor;
 import com.developersam.web.chunkreader.processor.ProcessorFactory;
 import com.developersam.web.chunkreader.processor.knowledge.KnowledgeGraphBuilderImp;
 import com.developersam.web.chunkreader.processor.knowledge.KnowledgeNode;
+import com.developersam.web.chunkreader.processor.summary.AnnotatedSentence;
+import com.developersam.web.chunkreader.processor.summary.TextRankSummaryGeneratorImp;
 import com.developersam.web.chunkreader.processor.type.TypePredictorClass;
 import com.google.cloud.language.v1beta2.Sentiment;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
@@ -15,14 +19,13 @@ public class Test {
     public static void main(String[] args){
 
         try{
-            ProcessorFactory factory = new ProcessorFactory("The word2vec tool takes a text corpus as" +
-                    " input and produces the word vectors as output. It first constructs a vocabulary from the training " +
-                    "text data and then learns vector representation of words. The resulting word vector file can be used " +
-                    "as features in many natural language processing and machine learning applications. " +
-                    "A simple way to investigate the learned representations is to find the closest words for a " +
-                    "user-specified word. The distance tool serves that purpose. For example, if you enter 'france', distance " +
-                    "will display the most similar words and their distances to 'france', which should look like:");
+            ProcessorFactory factory = new ProcessorFactory("Activists and politicians on Monday decried statements by an Egyptian army official who suggested that protesters in front of the cabinet of ministers should be burned in \"Hitler's ovens.\"\n" +
+                    "\n" +
+                    "The private newspaper Al-Shorouk reported on Monday that General Abdel Moneim Kato, an adviser to the military's Morale Affairs Department, suggested that instead of worrying about the country's welfare, people were concerned about \"some street bully who deserves to be thrown into Hitler's ovens,\" referring to protesters.\n" +
+                    "\n" +
+                    "Kato was attempting to justify the military's use of excessive force against protesters during clashes that broke out around the cabinet building on Saturday. The clashes led to the deaths of 11 people, according to the Health Ministry.");
 
+            /*
             System.out.println(((TypePredictorClass)factory.createTypePredictor()).getSentimentScore());
             List<KnowledgeNode> nodes = ((KnowledgeGraphBuilderImp)factory.createKnowledgeGraphBuilder()).getNodes();
             for(int i =0; i < nodes.size(); i ++){
@@ -32,10 +35,16 @@ public class Test {
                 
                 if(nodes.get(i).getMetadataURL() != null) System.out.println(nodes.get(i).getMetadataURL());
             }
+            */
 
+            TextRankSummaryGeneratorImp p = (TextRankSummaryGeneratorImp) factory.createSummaryGenerator();
+            List<AnnotatedSentence> sentences = p.getResultSentences();
+            for(int i =0; i < sentences.size(); i ++){
+                System.out.println(sentences.get(i).getSentence());
+                System.out.println(sentences.get(i).getSalience());
 
-
-
+                System.out.println("==========");
+            }
 
         }catch (IOException e){
 
