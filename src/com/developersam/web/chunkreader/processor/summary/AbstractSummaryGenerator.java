@@ -24,8 +24,8 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
 
     @Override
     public final void read(List<Entity> entityList,
-                     List<Sentence> sentenceList,
-                     List<Token> tokenList) {
+                           List<Sentence> sentenceList,
+                           List<Token> tokenList) {
         this.entityList = entityList;
         this.sentenceList = new ArrayList<>();
         this.sentenceList.addAll(sentenceList);
