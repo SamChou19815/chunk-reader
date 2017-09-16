@@ -1,4 +1,4 @@
-package com.developersam.web.chunkreader.processor.summary;
+package com.developersam.web.chunkreader.processor;
 
 import com.developersam.web.chunkreader.processor.TypePredictor;
 import com.developersam.web.chunkreader.processor.Util;
