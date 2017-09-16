@@ -6,92 +6,119 @@ import com.google.cloud.language.v1beta2.Document.Type;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Google Analyzer is used to simply extract the calculated results from Google
+ * API.
+ */
 public class GoogleAnalyzer{
-    private LanguageServiceClient languageApi;
-    private String text;
-    private List<Token> token;
-    private List<Entity> entity;
-    private List<Sentence> sentence;
+
+    /**
+     * Common Google Language API.
+     */
+    private LanguageServiceClient languageAPI;
+    /**
+     * Document built from the given text.
+     */
+    private Document doc;
+    /**
+     * Sentiment of the entire document.
+     */
     private Sentiment sentiment;
+    /**
+     * List of entities extracted from the text.
+     */
+    private List<Entity> entities;
+    /**
+     * List of sentences extracted from the text.
+     */
+    private List<Sentence> sentences;
+    /**
+     * List of tokens extracted from the text.
+     */
+    private List<Token> tokens;
 
-    public GoogleAnalyzer(String text1) {
-        try {
-            languageApi = LanguageServiceClient.create();
-        } catch (IOException e) {
-            // no nothing
-        }
-        text = text1;
+    /**
+     * Construct a {@code GoogleAnalyzer} from the text needed to analyze.
+     * @param text text to be analyzed.
+     * @throws IOException thrown when there is a problem reading the text.
+     */
+    public GoogleAnalyzer(String text) throws IOException {
+        languageAPI = LanguageServiceClient.create();
+        doc = Document.newBuilder()
+                .setContent(text).setType(Type.PLAIN_TEXT).build();
+        process();
     }
 
-    public Sentiment analyzeSentimentText(String text) throws IOException {
-        Document doc = Document.newBuilder()
-                .setContent(text).setType(Type.PLAIN_TEXT).build();
-        AnalyzeSentimentResponse response = languageApi.analyzeSentiment(doc);
-        return response.getDocumentSentiment();
+    /**
+     * Process the text.
+     * @throws IOException thrown when there is a problem processing the text.
+     */
+    private void process() throws IOException {
+        findSentiment();
+        findEntities();
+        findSentences();
+        findTokens();
     }
 
-    public List<Entity> analyzeEntitiesText(String text) throws IOException {
-        Document doc = Document.newBuilder()
-                .setContent(text).setType(Type.PLAIN_TEXT).build();
+    /**
+     * Find sentiment of the document
+     * @throws IOException thrown when there is a problem finding sentiment.
+     */
+    private void findSentiment() throws IOException {
+        AnalyzeSentimentResponse response = languageAPI.analyzeSentiment(doc);
+        sentiment = response.getDocumentSentiment();
+    }
+
+    /**
+     * Find entities in the document.
+     * @throws IOException thrown when there is a problem finding entities.
+     */
+    private void findEntities() throws IOException {
         AnalyzeEntitiesRequest request = AnalyzeEntitiesRequest.newBuilder()
                 .setDocument(doc)
                 .setEncodingType(EncodingType.UTF16).build();
-        AnalyzeEntitiesResponse response = languageApi.analyzeEntities(request);
-        return response.getEntitiesList();
+        AnalyzeEntitiesResponse response = languageAPI.analyzeEntities(request);
+        entities = response.getEntitiesList();
     }
 
-    public List<Token> analyzeSyntaxText(String text) throws IOException {
-        Document doc = Document.newBuilder()
-                .setContent(text).setType(Type.PLAIN_TEXT).build();
+    /**
+     * Find sentences in the document.
+     * @throws IOException thrown when there is a problem finding sentences.
+     */
+    private void findSentences() throws IOException {
         AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
                 .setDocument(doc)
                 .setEncodingType(EncodingType.UTF16).build();
-        AnalyzeSyntaxResponse response = languageApi.analyzeSyntax(request);
-        List<Sentence> sentences = response.getSentencesList();
-        return response.getTokensList();
+        AnalyzeSyntaxResponse response = languageAPI.analyzeSyntax(request);
+        sentences = response.getSentencesList();
     }
 
-    public List<Sentence> analyzeSentences(String text) throws IOException {
-        Document doc = Document.newBuilder()
-                .setContent(text).setType(Type.PLAIN_TEXT).build();
+    /**
+     * Find tokens in the document.
+     * @throws IOException thrown when there is a problem finding tokens.
+     */
+    private void findTokens() throws IOException {
         AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
                 .setDocument(doc)
                 .setEncodingType(EncodingType.UTF16).build();
-        AnalyzeSyntaxResponse response = languageApi.analyzeSyntax(request);
-        List<Sentence> sentences = response.getSentencesList();
-        return response.getSentencesList();
+        AnalyzeSyntaxResponse response = languageAPI.analyzeSyntax(request);
+        tokens = response.getTokensList();
     }
 
     public Sentiment getSentiment() {
         return sentiment;
     }
 
-    public List<Token> getToken() {
-        return token;
+    public List<Entity> getEntities() {
+        return entities;
     }
 
-    public List<Entity> getEntity() {
-        return entity;
+    public List<Sentence> getSentences(){
+        return sentences;
     }
 
-    public List<Sentence> getSentence(){
-        return sentence;
-    }
-
-    public void setSentiment(String text) throws IOException {
-        this.sentiment = analyzeSentimentText(text);
-    }
-
-    public void setToken (String text) throws IOException {
-        this.token = analyzeSyntaxText(text);
-    }
-
-    public void setEntity (String text) throws IOException {
-        this.entity = analyzeEntitiesText(text);
-    }
-
-    public void setSentences(String text) throws IOException {
-        this.sentence = analyzeSentences(text);
+    public List<Token> getTokens() {
+        return tokens;
     }
 
 }
