@@ -5,13 +5,14 @@ import com.developersam.web.model.datastore.DataStoreObject;
 import com.google.appengine.api.datastore.Key;
 import com.google.cloud.language.v1beta2.Entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
 
-    //private ArrayList<ArrayList<KnowledgeNode>> graph;
+    // private ArrayList<ArrayList<KnowledgeNode>> graph;
     private List<KnowledgeNode> nodes;
-    private final static int TYPE_SIZE = 6;
+    // private final static int TYPE_SIZE = 6;
 
     private Key parentKey;
 
@@ -32,6 +33,7 @@ public class KnowledgeGraphBuilderImp implements KnowledgeGraphBuilder {
 
     @Override
     public void read(List<Entity> entityList) {
+        nodes = new ArrayList<>();
         for (int i = 0; i < entityList.size(); i++) {
             KnowledgeNode n = new KnowledgeNode(entityList.get(i));
             nodes.add(n);
