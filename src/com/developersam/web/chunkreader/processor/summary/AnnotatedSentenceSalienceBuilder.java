@@ -63,12 +63,4 @@ public class AnnotatedSentenceSalienceBuilder {
         }
     }
 
-
-//
-//    /**
-//     * delete this!!!
-//     */
-//    public double getWeight(AnnotatedSentence a, AnnotatedSentence b) {
-//        return 1.0;
-//    }
 }
