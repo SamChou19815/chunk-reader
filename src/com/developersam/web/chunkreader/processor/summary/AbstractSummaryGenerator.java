@@ -9,9 +9,9 @@ import java.util.List;
 
 abstract class AbstractSummaryGenerator implements SummaryGenerator {
 
-    private List<Entity> entityList;
-    private List<Sentence> sentenceList;
-    private List<Token> tokenList;
+    protected List<Entity> entityList;
+    protected List<Sentence> sentenceList;
+    protected List<Token> tokenList;
 
     @Override
     public void read(List<Entity> entityList,
@@ -31,18 +31,6 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
                 o2.getText().getBeginOffset())
         ));
         this.tokenList = tokenList;
-    }
-
-    protected List<Entity> getEntityList() {
-        return entityList;
-    }
-
-    protected List<Sentence> getSentenceList() {
-        return sentenceList;
-    }
-
-    protected List<Token> getTokenList() {
-        return tokenList;
     }
 
     protected abstract List<AnnotatedSentence> getEvaluatedSentences();
