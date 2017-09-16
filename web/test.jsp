@@ -18,7 +18,6 @@
             </t:CardActions>
         </t:Card>
 
-
         <t:Card title="Details of article xxxx">
             <t:CardText>
                 We predict that the author thinks the opinion is BS.
