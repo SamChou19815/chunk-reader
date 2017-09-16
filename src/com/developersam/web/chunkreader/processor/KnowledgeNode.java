@@ -6,18 +6,29 @@ import com.google.cloud.language.v1beta2.EntityMention;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.developersam.web.chunkreader.processor.Util.getSentimentScore;
+
 public abstract class KnowledgeNode {
     private Entity entity;
     private String name;
     private Entity.Type type;
     private String metadataURL;
     private float salience;
-    //private ArrayList<EntityMention> ;
+    private ArrayList<int[]> entityMentions;
 
 
     public KnowledgeNode(Entity e){
         entity = e;
-        process(e);
+        name = entity.getName();
+        type = entity.getType();
+        metadataURL = entity.getMetadataMap().get("wikipedia_url");
+        int num = entity.getMentionsCount();
+        salience = entity.getSalience();
+        for (int i=0; i<num; i++){
+            int [] data = {entity.getMentions(i).getText().getBeginOffset(),
+                    Util.getSentimentScore(entity.getMentions(i).getSentiment())};
+            entityMentions.add(data);
+        }
     }
 
     public Entity getEntity() {
@@ -39,15 +50,15 @@ public abstract class KnowledgeNode {
     public float getSalience(){
         return salience;
     }
+
+    public ArrayList<int[]> getEntityMentionsData (){
+        return entityMentions;
+    }
     /**
      * Obtain the name, type, metadata URL, and salience. metadataURL might be null.
      * @param e
      */
     public void process(Entity e){
-        name = e.getName();
-        type = e.getType();
-        metadataURL = e.getMetadataMap().get("wikipedia_url");
-        salience = e.getSalience();
 
     }
 
