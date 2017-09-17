@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <t:Header title="Chunk Reader" selected="0"/>
+    <t:Header title="Chunk Reader" selected="2"/>
     <main class="mdl-layout__content">
         <div id="input_area">
             <t:Card title="About us:">

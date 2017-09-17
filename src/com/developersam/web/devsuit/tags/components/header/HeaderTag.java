@@ -84,20 +84,9 @@ public class HeaderTag extends TemplateTag {
         printContent("<div class=\"mdl-layout__drawer\">");
         printContent("<span class=\"mdl-layout-title\">Chunk reader</span>");
         printContent("<nav class=\"mdl-navigation\">");
-        printNavLink("Home", "/", selected == 0);
-        printNavLink("Article","/article.jsp",selected==1);
-        printNavLink("Upload", "/upload.jsp", selected ==2);
-        printNavLink("About","/about.jsp",selected==3);
-        //printNavLink("Home", "/", selected == 0);
-        //printNavLink("Blog", "/blog", selected == 1);
-        //printNavLink("Projects", "/projects", selected == 2);
-        //printNavLink("Store", "/store", selected == 3);
-        //printNavLink("Scheduler", "/apps/scheduler/", selected == 4);
-        //printNavLink("TEN", "/apps/ten/", selected == 5);
-        //printNavLink("Bots Civ", "/apps/botsciv/", selected == 6);
-        //printNavLink("Shield", "/apps/shield/", selected == 7);
-        //printContent("<a href=\"https://github.com/SamChou19815/Developer-Sam-Website\"");
-        //printContent(" class=\"mdl-navigation__link\" target=_blank>Open Source</a>");
+        printNavLink("Articles","/",selected==0);
+        printNavLink("Upload", "/upload.jsp", selected == 1);
+        printNavLink("About","/about.jsp",selected == 2);
         printContent("</nav>");
         printContent("</div>");
     }

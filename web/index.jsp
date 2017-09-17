@@ -3,27 +3,33 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <t:Head title="Developer Sam"/>
+    <t:Head title="Article"/>
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <t:Header title="Chunk Reader" selected="0"/>
     <main class="mdl-layout__content">
-        <t:Card title="Developer">
-            <t:CardText>Specialized in machine learning and web development.</t:CardText>
-        </t:Card>
-        <t:Card title="Researcher">
-            <t:CardText>Researched in machine learning and artificial intelligence.</t:CardText>
-        </t:Card>
-        <t:Card title="Student">
-            <t:CardText>Major in computer science at Cornell University.</t:CardText>
-        </t:Card>
-        <t:Card title="Know more about Sam">
-            <t:CardText>Specialized in machine learning and web development.</t:CardText>
+        <%--Access date of the article--%>
+        <t:Card title="Article uploaded on Sep 1">
+            <t:CardText>Four score and seven years ago, ...<%--Access text in the datastore--%></t:CardText>
             <t:CardActions>
-                <t:LinkButton href="resource/docs/Resume.pdf" openInNewTab="true">My Resume</t:LinkButton>
+                <t:LinkButton href="#" openInNewTab="true">
+                    Read more
+                </t:LinkButton>
             </t:CardActions>
         </t:Card>
+        <%--Access sorting with date, older dates on the bottom.--%>
+        <t:Card title="Article uploaded on Aug 28">
+            <t:CardText>Fifty-six years ago, ...</t:CardText>
+            <t:CardActions>
+                <t:LinkButton href="#" openInNewTab="true">
+                    Read more
+                </t:LinkButton>
+            </t:CardActions>
+        </t:Card>
+
+        <%--More cards needed, depending on the number of articles. Maybe put a max value around 10.--%>
+
     </main>
 </div>
 </body>
