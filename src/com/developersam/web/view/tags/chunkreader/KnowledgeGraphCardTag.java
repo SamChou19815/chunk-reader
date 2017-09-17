@@ -23,7 +23,7 @@ public class KnowledgeGraphCardTag extends CardTag {
                                         List<KnowledgeNodeDataStore> nodes) {
         for (KnowledgeNodeDataStore node: nodes) {
             sb.append("<a href='").append(node.getUrl())
-                    .append("' style='margin-right:8px'>")
+                    .append("' target=_blank style='margin-right:8px'>")
                     .append(node.getName()).append("</a> ");
         }
     }
