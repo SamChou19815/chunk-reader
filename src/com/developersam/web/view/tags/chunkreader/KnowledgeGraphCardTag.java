@@ -16,7 +16,7 @@ public class KnowledgeGraphCardTag extends CardTag {
     public void setTextDataStore(TextDataStore textDataStore) {
         this.knowledgeNodeDataStoreList =
                 textDataStore.getKnowledgeNodeDataStoreList();
-        setTitle("Knowledge Graph:");
+        setTitle("Knowledge Graph");
     }
 
     private void knowledgeGraphString(StringBuilder sb,
