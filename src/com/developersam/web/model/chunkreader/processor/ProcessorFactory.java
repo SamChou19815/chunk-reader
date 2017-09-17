@@ -2,7 +2,9 @@ package com.developersam.web.model.chunkreader.processor;
 
 import com.developersam.web.model.chunkreader.google.GoogleAnalyzer;
 import com.developersam.web.model.chunkreader.processor.knowledge.KnowledgeGraphBuilderImp;
+import com.developersam.web.model.chunkreader.processor.summary.AdvancedTextRankSummaryGenerator;
 import com.developersam.web.model.chunkreader.processor.summary.BasicTextRankSummaryGenerator;
+import com.developersam.web.model.chunkreader.processor.summary.NaiveSummaryGenerator;
 import com.developersam.web.model.chunkreader.processor.type.TypePredictorClass;
 import com.google.appengine.api.datastore.Key;
 
@@ -37,7 +39,7 @@ public class ProcessorFactory {
      * @return a processor with all necessary information initialized.
      */
     public Processor createTypePredictor() {
-        TypePredictor p = new TypePredictorClass(); // TODO when constructor is available.
+        TypePredictor p = new TypePredictorClass();
         p.read(googleAnalyzer.getSentiment());
         p.setParentKey(parentKey);
         return p;
@@ -48,7 +50,7 @@ public class ProcessorFactory {
      * @return a processor with all necessary information initialized.
      */
     public Processor createKnowledgeGraphBuilder() {
-        KnowledgeGraphBuilder p = new KnowledgeGraphBuilderImp(); // TODO when constructor is available.
+        KnowledgeGraphBuilder p = new KnowledgeGraphBuilderImp();
         p.read(googleAnalyzer.getEntities());
         p.setParentKey(parentKey);
         return p;
@@ -59,8 +61,8 @@ public class ProcessorFactory {
      * @return a processor with all necessary information initialized.
      */
     public Processor createSummaryGenerator() {
-        //SummaryGenerator p = new NaiveSummaryGenerator();
-        SummaryGenerator p = new BasicTextRankSummaryGenerator();
+        SummaryGenerator p = new NaiveSummaryGenerator();
+        // SummaryGenerator p = new BasicTextRankSummaryGenerator();
         p.read(googleAnalyzer.getEntities(),
                 googleAnalyzer.getSentences());
         p.setParentKey(parentKey);

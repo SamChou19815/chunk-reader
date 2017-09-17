@@ -21,7 +21,7 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
     protected Key parentKey;
 
     @Override
-    public final void read(List<Entity> entityList,
+    public void read(List<Entity> entityList,
                            List<Sentence> sentenceList) {
         this.entityList = entityList;
         this.sentenceList = new ArrayList<>();

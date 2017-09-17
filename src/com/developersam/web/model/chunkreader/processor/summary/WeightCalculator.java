@@ -15,51 +15,33 @@ public class WeightCalculator {
         this.annotatedSentenceList = annotatedSentenceList;
     }
 
-
-    private int findSentenceID(int pos) {
-        int start = 0, end = annotatedSentenceList.size() - 1;
-        while (true) {
-            if (end - start <= 1) {
-                return start;
-            }
-            int mid = (start + end) / 2;
-            int midPos = annotatedSentenceList.get(mid).getPosition();
-            if (pos < midPos) {
-                end = mid;
-            } else if ( pos > annotatedSentenceList.get(mid + 1).getPosition()) {
-                start = mid + 1;
-            } else {
-                return mid;
-            }
-        }
-    }
-
-    public double weight(AnnotatedSentence n1, AnnotatedSentence n2){
+    public double weight(int s1ID, int s2ID){
+        /*
         ArrayList<KnowledgeNode> n1Keywords = new ArrayList<>();
         ArrayList<KnowledgeNode> n2Keywords = new ArrayList<>();
         for(int i = 0; i < entityList.size();i++){
             KnowledgeNode keyword = new KnowledgeNode(entityList.get(i));
             List<int[]> list = keyword.getEntityMentionsData();
             for(int j = 0; j < list.size();j++){
-                int num = findSentenceID(list.get(j)[0]);
+                int num = 0; // findSentenceID(list.get(j)[0]);
                 if(num == n1.getPosition()) n1Keywords.add(keyword);
                 if(num == n2.getPosition()) n2Keywords.add(keyword);
             }
         }
-
         double weightSum = 0.0;
         for (int i = 0; i < n1Keywords.size();i++){
             KnowledgeNode keyword1 = n1Keywords.get(i);
             for (int j = 0; j < n2Keywords.size();j++){
                 KnowledgeNode keyword2 = n2Keywords.get(j);
-                weightSum += word_weight(keyword1, keyword2);
+                weightSum += wordWeight(keyword1, keyword2);
             }
         }
         return weightSum/Math.log(n1.getSentence().length() + n2.getSentence().length());
-
+        */
+        return 0;
     }
 
-    private double word_weight(KnowledgeNode e1, KnowledgeNode e2){
+    private double wordWeight(KnowledgeNode e1, KnowledgeNode e2){
         int e1Score = e1.getSentimentScore();
         int e2Score = e2.getSentimentScore();
 

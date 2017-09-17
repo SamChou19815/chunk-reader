@@ -1,24 +1,16 @@
 package com.developersam.web.model.chunkreader.processor.summary;
 
-import com.developersam.web.model.chunkreader.google.objects.Sentence;
+import java.util.HashSet;
 
-import java.util.List;
-
-public class BasicTextRankSummaryGenerator extends TextRankSummaryGenerator{
-
-    AnnotatedSentenceSalienceBuilder salienceBuilder;
-    WeightCalculator weightCalculator;
-
-    public BasicTextRankSummaryGenerator(){
-        weightCalculator = new WeightCalculator(entityList, annotatedSentenceList);
-        salienceBuilder = new AnnotatedSentenceSalienceBuilder(annotatedSentenceList, similarityMatrix);
-    }
+public class BasicTextRankSummaryGenerator extends TextRankSummaryGenerator {
 
     @Override
-    protected double calculateSimilarity(Sentence s1, Sentence s2) {
-        return weightCalculator.weight(
-                new AnnotatedSentence(parentKey, s1, Math.random()*1000),
-                new AnnotatedSentence(parentKey, s2, Math.random()*1000));
+    protected double calculateSimilarity(int s1ID, int s2ID) {
+        HashSet<String> common = new HashSet<>();
+        common.addAll(records.get(s1ID));
+        common.addAll(records.get(s2ID));
+        int s1Len = annotatedSentenceList.get(s1ID).getSentence().length();
+        int s2Len = annotatedSentenceList.get(s2ID).getSentence().length();
+        return 1.0 * common.size() / (Math.log(s1Len) + Math.log(s2Len));
     }
-
 }
