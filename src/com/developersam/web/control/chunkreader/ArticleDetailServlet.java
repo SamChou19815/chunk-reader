@@ -17,7 +17,7 @@ public class ArticleDetailServlet extends HttpServlet {
             throws ServletException, IOException {
         String keyString = request.getParameter("key");
         String limitStr = request.getParameter("limit");
-        int limit = 10;
+        int limit = 5;
         if (limitStr != null) {
             try {
                 limit = Integer.parseInt(limitStr);
