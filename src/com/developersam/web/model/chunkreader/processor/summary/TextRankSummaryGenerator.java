@@ -5,6 +5,7 @@ import com.developersam.web.model.chunkreader.google.objects.Sentence;
 import com.developersam.web.model.chunkreader.google.objects.TextSpan;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public abstract class TextRankSummaryGenerator
         annotatedSentenceList = new ArrayList<>();
         for (Sentence sentence: sentenceList) {
             annotatedSentenceList.add(new AnnotatedSentence(parentKey,
-                    sentence, Math.random() * 1000));
+                    sentence, Math.random()));
         }
     }
 
@@ -107,12 +108,13 @@ public abstract class TextRankSummaryGenerator
     private void randomVisit() {
         int num = annotatedSentenceList.size();
         final double D = 0.85;
-        AnnotatedSentence start = annotatedSentenceList.get(randomSentenceID());
+        int i = randomSentenceID();
+        AnnotatedSentence start = annotatedSentenceList.get(i);
         int counter = 0;
         double[] previousResult = new double[num];
         // Initialization
-        for (int i = 0; i < num; i++) {
-            previousResult[i] = Short.MIN_VALUE;
+        for (int ii = 0; ii < num; ii++) {
+            previousResult[ii] = Short.MIN_VALUE;
         }
         while (true) {
             if (counter % num == 0) {
@@ -120,28 +122,20 @@ public abstract class TextRankSummaryGenerator
                     // check every num times
                     return;
                 } else {
+                    System.out.println(Arrays.toString(previousResult));
                     // record for future use
-                    for (int i = 0; i < num; i++) {
-                        previousResult[i] =
-                                annotatedSentenceList.get(i).getSalience();
+                    for (int ii = 0; ii < num; ii++) {
+                        previousResult[ii] =
+                                annotatedSentenceList.get(ii).getSalience();
                     }
-                }
-            }
-            int i;
-            AnnotatedSentence next;
-            while (true) {
-                i = randomSentenceID();
-                next = annotatedSentenceList.get(i);
-                if (!start.equals(next)) {
-                    break;
                 }
             }
             double sum = 0;
             for (int j = 0; j < num; j++) {
-                AnnotatedSentence inS = annotatedSentenceList.get(j);
                 if (i == j) {
                     continue;
                 }
+                AnnotatedSentence inS = annotatedSentenceList.get(j);
                 double numerator = similarityMatrix[j][i];
                 double denominator = 0.0;
                 for (int k = 0; k < num; k++) {
@@ -155,6 +149,14 @@ public abstract class TextRankSummaryGenerator
             double newSalience = (1-D) + D * sum;
             start.setSalience(newSalience);
             counter++;
+            AnnotatedSentence next;
+            while (true) {
+                i = randomSentenceID();
+                next = annotatedSentenceList.get(i);
+                if (!start.equals(next)) {
+                    break;
+                }
+            }
             start = next;
         }
     }

@@ -31,20 +31,19 @@ class APIFetcher {
         httpConnection.setDoOutput(true);
         BufferedWriter httpRequestBodyWriter = new BufferedWriter(new
                 OutputStreamWriter(httpConnection.getOutputStream()));
-        httpRequestBodyWriter.write
-                ("{" +
-                        " \"document\": {" +
-                        "  \"content\": \"" + text + "\"," +
-                        "  \"type\": \"PLAIN_TEXT\"" +
-                        " },\n" +
-                        " \"encodingType\": \"UTF8\"," +
-                        " \"features\": {" +
-                        "  \"extractDocumentSentiment\": true," +
-                        "  \"extractEntities\": true," +
-                        "  \"extractEntitySentiment\": true," +
-                        "  \"extractSyntax\": true" +
-                        " }" +
-                        "}");
+        String json = "{" +
+                " \"document\": " + new Gson().toJson(new Document(text)) +
+                " ,\n" +
+                " \"encodingType\": \"UTF8\",\n" +
+                " \"features\": {\n" +
+                "  \"extractDocumentSentiment\": true,\n" +
+                "  \"extractEntities\": true,\n" +
+                "  \"extractEntitySentiment\": true,\n" +
+                "  \"extractSyntax\": true\n" +
+                " }\n" +
+                "}";
+        System.out.println(json);
+        httpRequestBodyWriter.write(json);
         httpRequestBodyWriter.close();
         StringBuilder sb = new StringBuilder();
         InputStreamReader in = new InputStreamReader(
@@ -57,9 +56,18 @@ class APIFetcher {
         return sb.toString();
     }
 
+    private class Document {
+        private String content;
+        private String type = "PLAIN_TEXT";
+        private Document(String text) {
+            content = text;
+        }
+    }
+
     NLPAnalysisResult getResult() throws IOException {
+        String response = getResponse();
         JsonObject root =
-                new JsonParser().parse(getResponse()).getAsJsonObject();
+                new JsonParser().parse(response).getAsJsonObject();
         return new NLPAnalysisResult(root);
     }
 
