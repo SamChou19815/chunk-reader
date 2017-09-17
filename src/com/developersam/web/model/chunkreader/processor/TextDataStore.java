@@ -11,11 +11,11 @@ public class TextDataStore extends DataStoreObject {
 
     private String text;
     private int type;
-    private List<KnowledgeNodeDataStore> knowledgeNodeDataStoreList;
+    private List<List<KnowledgeNodeDataStore>> knowledgeNodeDataStoreList;
     private List<AnnotatedSentence> annotatedSentenceList;
 
     public TextDataStore(Entity textEntity,
-                         List<KnowledgeNodeDataStore> knowledgeNodeDataStoreLst,
+                         List<List<KnowledgeNodeDataStore>> knowledgeNodeDataStoreLst,
                          List<AnnotatedSentence> annotatedSentenceLst) {
         super("Text");
         text = textToString(textEntity.getProperty("rawText"));
@@ -39,7 +39,7 @@ public class TextDataStore extends DataStoreObject {
         return type;
     }
 
-    public List<KnowledgeNodeDataStore> getKnowledgeNodeDataStoreList() {
+    public List<List<KnowledgeNodeDataStore>> getKnowledgeNodeDataStoreList() {
         return knowledgeNodeDataStoreList;
     }
 

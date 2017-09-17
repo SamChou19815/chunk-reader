@@ -28,7 +28,7 @@ public class KnowledgeNodeDataStore extends DataStoreObject {
     public KnowledgeNodeDataStore(Entity knowledgeGraphEntity) {
         name = (String) knowledgeGraphEntity.getProperty("name");
         type = (int) (long) knowledgeGraphEntity.getProperty("type");
-        url = (String) knowledgeGraphEntity.getProperty("url");
+        url = (String) knowledgeGraphEntity.getProperty("URL");
         salience = (double) knowledgeGraphEntity.getProperty("salience");
         sentimentScore = (int) (long) knowledgeGraphEntity
                 .getProperty("sentimentScore");

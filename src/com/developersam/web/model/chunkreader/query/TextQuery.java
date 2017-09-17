@@ -15,7 +15,7 @@ public class TextQuery {
 
     public TextQuery(Entity textEntity) {
         Key parentKey = textEntity.getKey();
-        List<KnowledgeNodeDataStore> knowledgeNodeDataStoreList =
+        List<List<KnowledgeNodeDataStore>> knowledgeNodeDataStoreList =
                 new KnowledgeQuery(parentKey).getListOfKnowledgeNodes();
         List<AnnotatedSentence> annotatedSentenceList =
                 new SummaryQuery(parentKey).getAnnotatedSentences();
