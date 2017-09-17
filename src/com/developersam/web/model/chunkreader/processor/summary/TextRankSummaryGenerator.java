@@ -90,7 +90,7 @@ public abstract class TextRankSummaryGenerator
     }
 
     private boolean convergent(double[] previousResult) {
-        double threshold = 1e-4;
+        double threshold = 1e-2;
         for (int i = 0; i < previousResult.length; i++) {
             if (Math.abs(previousResult[i] -
                     annotatedSentenceList.get(i).getSalience()) > threshold) {
