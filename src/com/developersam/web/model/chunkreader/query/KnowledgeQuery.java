@@ -2,10 +2,7 @@ package com.developersam.web.model.chunkreader.query;
 
 import com.developersam.web.model.chunkreader.processor.knowledge.KnowledgeNodeDataStore;
 import com.developersam.web.model.datastore.DataStoreObject;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +37,17 @@ public class KnowledgeQuery extends DataStoreObject {
             list.get(type-1).add(knowledgeNodeDataStore);
         }
         return list;
+    }
+
+    public List<KnowledgeNodeDataStore> getTop3KeyWords() {
+        List<KnowledgeNodeDataStore> keywords = new ArrayList<>(3);
+        Query q = getQuery().addSort("salience",
+                Query.SortDirection.DESCENDING);
+        PreparedQuery pq = getPreparedQuery(q);
+        for (Entity entity: pq.asList(FetchOptions.Builder.withLimit(3))) {
+            keywords.add(new KnowledgeNodeDataStore(entity));
+        }
+        return keywords;
     }
 
 }

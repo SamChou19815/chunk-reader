@@ -1,13 +1,18 @@
 package com.developersam.web.model.chunkreader.processor;
 
+import com.developersam.web.model.chunkreader.processor.knowledge.KnowledgeNodeDataStore;
+import com.developersam.web.model.chunkreader.query.KnowledgeQuery;
 import com.developersam.web.model.datastore.DataStoreObject;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.KeyFactory;
+
+import java.util.List;
 
 public class ShortTextDataStore extends DataStoreObject {
 
     private String keyString;
     private String text;
+    private List<KnowledgeNodeDataStore> keywords;
 
     public ShortTextDataStore(Entity textEntity) {
         keyString = KeyFactory.keyToString(textEntity.getKey());
@@ -15,6 +20,7 @@ public class ShortTextDataStore extends DataStoreObject {
         if (text.length() > 300) {
             text = text.substring(0, 300) + " ...";
         }
+        keywords = new KnowledgeQuery(textEntity.getKey()).getTop3KeyWords();
     }
 
     @Override
@@ -28,5 +34,9 @@ public class ShortTextDataStore extends DataStoreObject {
 
     public String getText() {
         return text;
+    }
+
+    public List<KnowledgeNodeDataStore> getKeywords() {
+        return keywords;
     }
 }

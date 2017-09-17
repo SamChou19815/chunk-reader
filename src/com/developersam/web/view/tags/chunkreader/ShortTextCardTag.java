@@ -5,6 +5,7 @@ import com.developersam.web.devsuit.tags.components.card.CardActionsTag;
 import com.developersam.web.devsuit.tags.components.card.CardTag;
 import com.developersam.web.devsuit.tags.components.card.CardTextTag;
 import com.developersam.web.model.chunkreader.processor.ShortTextDataStore;
+import com.developersam.web.model.chunkreader.processor.knowledge.KnowledgeNodeDataStore;
 
 import javax.servlet.jsp.JspException;
 import java.io.IOException;
@@ -15,7 +16,13 @@ public class ShortTextCardTag extends CardTag {
 
     public void setShortText(ShortTextDataStore shortTextDataStore) {
         this.shortTextDataStore = shortTextDataStore;
-        setTitle("Text");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Keywords: ");
+        for (KnowledgeNodeDataStore node: shortTextDataStore.getKeywords()) {
+            sb.append(node.getName()).append(", ");
+        }
+        int len = sb.length();
+        setTitle(sb.delete(len-2, len).toString());
     }
 
     private void printShortText() throws JspException, IOException {
