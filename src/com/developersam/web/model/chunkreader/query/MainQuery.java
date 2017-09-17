@@ -26,4 +26,8 @@ public class MainQuery extends DataStoreObject {
     public String toString() {
         return data.toString();
     }
+
+    public List<TextDataStore> getData() {
+        return data;
+    }
 }

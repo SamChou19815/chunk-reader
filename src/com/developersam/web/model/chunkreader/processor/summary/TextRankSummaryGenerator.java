@@ -5,7 +5,6 @@ import com.developersam.web.model.chunkreader.google.objects.Sentence;
 import com.developersam.web.model.chunkreader.google.objects.TextSpan;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -122,7 +121,6 @@ public abstract class TextRankSummaryGenerator
                     // check every num times
                     return;
                 } else {
-                    System.out.println(Arrays.toString(previousResult));
                     // record for future use
                     for (int ii = 0; ii < num; ii++) {
                         previousResult[ii] =
