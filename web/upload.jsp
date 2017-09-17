@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <t:Head title="Upload"/>
+    <t:Head title="Upload Document"/>
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -12,15 +12,32 @@
         <div id="input_area">
             <t:Card title="Put your passage here:">
                 <t:CardText>
-                    <t:TextAreaInput id="en" rows="2">Input the passage that you want to read.</t:TextAreaInput>
+                    <t:TextAreaInput id="text" rows="7">
+                        Input the passage that you want to read.
+                    </t:TextAreaInput>
                 </t:CardText>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                        style="margin:1em auto" onclick="<%-- JS function that sends the input into datastore--%>">
-                    Submit
-                </button>
+                <t:CardActions>
+                    <t:LinkButton href="#" openInNewTab="false"
+                                  onClick="submit()">
+                        Submit
+                    </t:LinkButton>
+                </t:CardActions>
             </t:Card>
         </div>
     </main>
 </div>
 </body>
 </html>
+<script>
+    function submit() {
+        var textVal = $('#text').val();
+        $.post("/submit", {text: textVal}, function (data) {
+            if (data === "true") {
+                alert("You have successfully submitted a document for " +
+                    "smart analysis!");
+            } else {
+                alert("Some error occurs. We don't know what's going on.");
+            }
+        })
+    }
+</script>

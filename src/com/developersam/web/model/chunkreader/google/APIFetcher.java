@@ -42,7 +42,6 @@ class APIFetcher {
                 "  \"extractSyntax\": true\n" +
                 " }\n" +
                 "}";
-        System.out.println(json);
         httpRequestBodyWriter.write(json);
         httpRequestBodyWriter.close();
         StringBuilder sb = new StringBuilder();
