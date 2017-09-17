@@ -19,7 +19,7 @@ public class TextDataStore extends DataStoreObject {
                          List<AnnotatedSentence> annotatedSentenceLst) {
         super("Text");
         text = textToString(textEntity.getProperty("rawText"));
-        type = (int) textEntity.getProperty("type");
+        type = (int) (long) textEntity.getProperty("type");
         knowledgeNodeDataStoreList = knowledgeNodeDataStoreLst;
         annotatedSentenceList = annotatedSentenceLst;
     }
@@ -29,5 +29,21 @@ public class TextDataStore extends DataStoreObject {
         return "{rawText:\"" + text + "\",type:" + type +
                 ",knowledgeNodeDataStoreList:" + knowledgeNodeDataStoreList +
                 ",annotatedSentenceList:" + annotatedSentenceList + "}";
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public List<KnowledgeNodeDataStore> getKnowledgeNodeDataStoreList() {
+        return knowledgeNodeDataStoreList;
+    }
+
+    public List<AnnotatedSentence> getAnnotatedSentenceList() {
+        return annotatedSentenceList;
     }
 }

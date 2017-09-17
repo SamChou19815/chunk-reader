@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<cronentries>
-    <cron>
-        <url>/apps/scheduler/sendDailyReport</url>
-        <description>Scheduler Send Daily Report</description>
-        <schedule>every 24 hours</schedule>
-    </cron>
-</cronentries>

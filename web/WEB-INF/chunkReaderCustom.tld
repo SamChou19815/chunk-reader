@@ -15,4 +15,41 @@
         </attribute>
     </tag>
 
+    <tag>
+        <name>PredictionCard</name>
+        <tag-class>com.developersam.web.view.tags.chunkreader.PredictionCardTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>textDataStore</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.developersam.web.model.chunkreader.processor.TextDataStore</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>KnowledgeGraphCard</name>
+        <tag-class>com.developersam.web.view.tags.chunkreader.KnowledgeGraphCardTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>textDataStore</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.developersam.web.model.chunkreader.processor.TextDataStore</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>SummaryCard</name>
+        <tag-class>com.developersam.web.view.tags.chunkreader.SummaryCardTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>textDataStore</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.developersam.web.model.chunkreader.processor.TextDataStore</type>
+        </attribute>
+    </tag>
+
+
 </taglib>
