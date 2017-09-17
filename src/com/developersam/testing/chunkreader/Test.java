@@ -1,15 +1,8 @@
 package com.developersam.testing.chunkreader;
 
-import com.developersam.web.chunkreader.google.GoogleAnalyzer;
-import com.developersam.web.chunkreader.processor.Processor;
-import com.developersam.web.chunkreader.processor.ProcessorFactory;
-import com.developersam.web.chunkreader.processor.SummaryGenerator;
-import com.developersam.web.chunkreader.processor.knowledge.KnowledgeGraphBuilderImp;
-import com.developersam.web.chunkreader.processor.knowledge.KnowledgeNode;
-import com.developersam.web.chunkreader.processor.summary.AnnotatedSentence;
-import com.developersam.web.chunkreader.processor.summary.TextRankSummaryGeneratorImp;
-import com.developersam.web.chunkreader.processor.type.TypePredictorClass;
-import com.google.cloud.language.v1beta2.Sentiment;
+import com.developersam.web.model.chunkreader.processor.ProcessorFactory;
+import com.developersam.web.model.chunkreader.processor.summary.AnnotatedSentence;
+import com.developersam.web.model.chunkreader.processor.summary.TextRankSummaryGeneratorImp;
 
 import java.io.IOException;
 import java.util.ArrayList;
