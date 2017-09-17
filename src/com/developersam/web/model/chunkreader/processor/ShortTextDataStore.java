@@ -10,7 +10,6 @@ public class ShortTextDataStore extends DataStoreObject {
     private String text;
 
     public ShortTextDataStore(Entity textEntity) {
-        super("Text");
         keyString = KeyFactory.keyToString(textEntity.getKey());
         text = textToString(textEntity.getProperty("rawText")).
                 substring(0, 300) + " ...";

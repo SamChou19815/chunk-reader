@@ -10,7 +10,7 @@ public class KnowledgeNodeDataStore extends DataStoreObject {
     private int type;
     private String url;
     private double salience;
-    private double sentimentScore;
+    private int sentimentScore;
 
     public KnowledgeNodeDataStore(Key parentKey, KnowledgeNode node) {
         super("TextKnowledgeGraph");
@@ -27,10 +27,10 @@ public class KnowledgeNodeDataStore extends DataStoreObject {
 
     public KnowledgeNodeDataStore(Entity knowledgeGraphEntity) {
         name = (String) knowledgeGraphEntity.getProperty("name");
-        type = (int) knowledgeGraphEntity.getProperty("type");
+        type = (int) (long) knowledgeGraphEntity.getProperty("type");
         url = (String) knowledgeGraphEntity.getProperty("url");
         salience = (double) knowledgeGraphEntity.getProperty("salience");
-        sentimentScore = (double) knowledgeGraphEntity
+        sentimentScore = (int) (long) knowledgeGraphEntity
                 .getProperty("sentimentScore");
     }
 
@@ -39,5 +39,25 @@ public class KnowledgeNodeDataStore extends DataStoreObject {
         return "{name:\"" + name + "\",type:" + type + ",url:\"" + url +
                 "\",salience:" + salience +
                 ",sentimentScore:" + sentimentScore + "}";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public double getSalience() {
+        return salience;
+    }
+
+    public int getSentimentScore() {
+        return sentimentScore;
     }
 }

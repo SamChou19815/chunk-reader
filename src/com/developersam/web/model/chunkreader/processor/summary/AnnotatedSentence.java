@@ -86,7 +86,7 @@ public class AnnotatedSentence extends DataStoreObject {
     public AnnotatedSentence(Entity textSummaryEntity) {
         this();
         sentence = textToString(textSummaryEntity.getProperty("sentence"));
-        position = (int) textSummaryEntity.getProperty("position");
+        position = (int) (long) textSummaryEntity.getProperty("position");
         salience = (double) textSummaryEntity.getProperty("salience");
     }
 

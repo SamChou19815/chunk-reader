@@ -12,7 +12,7 @@ import java.util.List;
 public class KnowledgeQuery extends DataStoreObject {
 
     public KnowledgeQuery(Key parentKey) {
-        super("TextKnowledge");
+        super("TextKnowledgeGraph");
         setParentKey(parentKey);
     }
 

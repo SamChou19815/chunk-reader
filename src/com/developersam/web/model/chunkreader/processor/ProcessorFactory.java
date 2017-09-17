@@ -2,9 +2,7 @@ package com.developersam.web.model.chunkreader.processor;
 
 import com.developersam.web.model.chunkreader.google.GoogleAnalyzer;
 import com.developersam.web.model.chunkreader.processor.knowledge.KnowledgeGraphBuilderImp;
-import com.developersam.web.model.chunkreader.processor.summary.AdvancedTextRankSummaryGenerator;
 import com.developersam.web.model.chunkreader.processor.summary.BasicTextRankSummaryGenerator;
-import com.developersam.web.model.chunkreader.processor.summary.NaiveSummaryGenerator;
 import com.developersam.web.model.chunkreader.processor.type.TypePredictorClass;
 import com.google.appengine.api.datastore.Key;
 
@@ -40,8 +38,8 @@ public class ProcessorFactory {
      */
     public Processor createTypePredictor() {
         TypePredictor p = new TypePredictorClass();
-        p.read(googleAnalyzer.getSentiment());
         p.setParentKey(parentKey);
+        p.read(googleAnalyzer.getSentiment());
         return p;
     }
 
@@ -51,8 +49,8 @@ public class ProcessorFactory {
      */
     public Processor createKnowledgeGraphBuilder() {
         KnowledgeGraphBuilder p = new KnowledgeGraphBuilderImp();
-        p.read(googleAnalyzer.getEntities());
         p.setParentKey(parentKey);
+        p.read(googleAnalyzer.getEntities());
         return p;
     }
 
@@ -63,9 +61,9 @@ public class ProcessorFactory {
     public Processor createSummaryGenerator() {
         // SummaryGenerator p = new NaiveSummaryGenerator();
         SummaryGenerator p = new BasicTextRankSummaryGenerator();
+        p.setParentKey(parentKey);
         p.read(googleAnalyzer.getEntities(),
                 googleAnalyzer.getSentences());
-        p.setParentKey(parentKey);
         return p;
     }
 
