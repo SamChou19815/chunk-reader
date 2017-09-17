@@ -27,7 +27,7 @@ public abstract class TextRankSummaryGenerator
      */
     protected abstract double calculateSimilarity(Sentence s1, Sentence s2);
 
-    protected void buildListOfAnnotatedSentences() {
+    private void buildListOfAnnotatedSentences() {
         annotatedSentenceList = new ArrayList<>();
         for (Sentence sentence: sentenceList) {
             annotatedSentenceList.add(new AnnotatedSentence(parentKey,
@@ -35,7 +35,7 @@ public abstract class TextRankSummaryGenerator
         }
     }
 
-    protected void buildSimilarityMatrix() {
+    private void buildSimilarityMatrix() {
         final int sentenceListSize = sentenceList.size();
         similarityMatrix = new double[sentenceListSize][sentenceListSize];
         for (int i = 0; i < sentenceList.size(); i++) {
@@ -52,16 +52,30 @@ public abstract class TextRankSummaryGenerator
     }
 
     private void randomVisit() {
-        int randomStartingPoint =
-                (int) (Math.random() * annotatedSentenceList.size());
-        AnnotatedSentence randomSentence =
-                annotatedSentenceList.get(randomStartingPoint);
+        int numberOfSentences = annotatedSentenceList.size();
+        AnnotatedSentence start = annotatedSentenceList.get(
+                (int)(Math.random()*numberOfSentences));
+
+        int counter = 0;
+        while (true) {
+
+        }
         
         // TODO
     }
 
-    private void randomVisitUntilConverge() {
-        // TODO
+    /*
+    private void setSalience(){
+        int randomStartingPoint = (int) (Math.random() * annotatedSentenceList.size());
+        salienceBuilder.calculateSentenceSalience(randomStartingPoint);
     }
+    */
 
+    @Override
+    protected List<AnnotatedSentence> getEvaluatedSentences() {
+        buildListOfAnnotatedSentences();
+        buildSimilarityMatrix();
+        randomVisit();
+        return annotatedSentenceList;
+    }
 }

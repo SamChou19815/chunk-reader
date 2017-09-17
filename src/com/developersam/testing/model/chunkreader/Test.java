@@ -2,7 +2,7 @@ package com.developersam.testing.model.chunkreader;
 
 import com.developersam.web.model.chunkreader.processor.ProcessorFactory;
 import com.developersam.web.model.chunkreader.processor.summary.AnnotatedSentence;
-import com.developersam.web.model.chunkreader.processor.summary.TextRankSummaryGeneratorImp;
+import com.developersam.web.model.chunkreader.processor.summary.BasicTextRankSummaryGenerator;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Test {
             }
             */
 
-            TextRankSummaryGeneratorImp p = (TextRankSummaryGeneratorImp) factory.createSummaryGenerator();
+            BasicTextRankSummaryGenerator p = (BasicTextRankSummaryGenerator) factory.createSummaryGenerator();
             List<AnnotatedSentence> sentences = p.getResultSentences();
             for(int i =0; i < sentences.size(); i ++){
                 System.out.println(sentences.get(i).getSentence());

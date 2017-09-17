@@ -60,16 +60,18 @@ public class WeightCalculator {
     }
 
     private double word_weight(KnowledgeNode e1, KnowledgeNode e2){
-        int e1Score = (int)e1.getSentimentScore();
-        int e2Score = (int)e2.getSentimentScore();
+        int e1Score = e1.getSentimentScore();
+        int e2Score = e2.getSentimentScore();
 
         double mag1 = 1.0, mag2 = 1.0;
         if(e1Score%2 == 1)  mag1 = 0.5;
         if(e2Score%2 == 1)  mag2 = 0.5;
 
         int pos_or_neg = 1;
-        if((e1Score == 3 || e1Score == 4) && (e2Score == 5 || e2Score == 6)) pos_or_neg = 0;
-        if((e1Score == 5 || e1Score == 6) && (e2Score == 3 || e2Score == 4)) pos_or_neg = 0;
+        if((e1Score == 3 || e1Score == 4) && (e2Score == 5 || e2Score == 6))
+            pos_or_neg = 0;
+        if((e1Score == 5 || e1Score == 6) && (e2Score == 3 || e2Score == 4))
+            pos_or_neg = 0;
 
         return mag1 + mag2 + pos_or_neg;
     }
