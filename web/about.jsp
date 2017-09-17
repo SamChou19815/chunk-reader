@@ -10,9 +10,8 @@
     <t:Header title="Chunk Reader" selected="2"/>
     <main class="mdl-layout__content">
         <div id="input_area">
-            <t:Card title="About us:">
+            <t:Card title="About Us">
                 <t:CardText>
-                    <%--Incomplete--%>
                     We are humans. We live on Earth.
                 </t:CardText>
             </t:Card>
