@@ -11,8 +11,10 @@ public class ShortTextDataStore extends DataStoreObject {
 
     public ShortTextDataStore(Entity textEntity) {
         keyString = KeyFactory.keyToString(textEntity.getKey());
-        text = textToString(textEntity.getProperty("rawText")).
-                substring(0, 300) + " ...";
+        text = textToString(textEntity.getProperty("rawText"));
+        if (text.length() > 300) {
+            text = text.substring(0, 300) + " ...";
+        }
     }
 
     @Override
