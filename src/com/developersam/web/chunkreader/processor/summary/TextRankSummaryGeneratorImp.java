@@ -35,4 +35,8 @@ public class TextRankSummaryGeneratorImp extends TextRankSummaryGenerator{
         return annotatedSentenceList;
     }
 
+    public List<AnnotatedSentence> getResultSentences(){
+        return annotatedSentenceList;
+    }
+
 }
