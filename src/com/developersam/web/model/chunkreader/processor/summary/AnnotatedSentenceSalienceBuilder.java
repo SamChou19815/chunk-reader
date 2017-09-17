@@ -75,7 +75,7 @@ public class AnnotatedSentenceSalienceBuilder {
             }
         }
 
-        asList.get(i).setSalience(0.2 + 0.8*sumRatio);
+        asList.get(i).setSalience(0.15 + 0.85*sumRatio);
 
         int random_next_point = (int)(Math.random()*asList.size());
         calculateSentenceSalience(Math.floorMod((random_next_point), asList.size()));
