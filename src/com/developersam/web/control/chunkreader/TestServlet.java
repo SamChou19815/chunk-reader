@@ -1,8 +1,7 @@
 package com.developersam.web.control.chunkreader;
 
-import com.developersam.web.chunkreader.google.GoogleAnalyzer;
-import com.developersam.web.chunkreader.processor.MainProcessor;
-import com.google.cloud.language.v1beta2.Sentiment;
+import com.developersam.web.model.chunkreader.google.GoogleAnalyzer;
+import com.developersam.web.model.chunkreader.google.objects.Sentiment;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +15,7 @@ public class TestServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.print("hello world");
         /*
         MainProcessor processor = new MainProcessor("Google, " +
                 "headquartered in Mountain View, unveiled the new Android " +
