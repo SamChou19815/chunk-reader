@@ -36,7 +36,7 @@ public class TypePredictorClass extends DataStoreObject
 
     @Override
     public void process() {
-        Entity textEntity = new Entity(parentKey);
+        Entity textEntity = getEntityByKey(parentKey);
         textEntity.setProperty("type", sentimentScore);
         putIntoDatabase(textEntity);
     }

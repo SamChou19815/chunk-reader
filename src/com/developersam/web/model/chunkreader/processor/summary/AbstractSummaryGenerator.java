@@ -44,6 +44,19 @@ abstract class AbstractSummaryGenerator implements SummaryGenerator {
         this.parentKey = parentKey;
     }
 
+    protected int findSentenceID(List<AnnotatedSentence> annotatedSentenceList,
+                                int pos) {
+        for (int i = 0; i < annotatedSentenceList.size(); i++) {
+            int sentencePos = annotatedSentenceList.get(i).getPosition();
+            if (sentencePos == pos) {
+                return i;
+            } else if (sentencePos > pos) {
+                return i-1;
+            }
+        }
+        return annotatedSentenceList.size()-1;
+    }
+
     /**
      * Subclass should override this method in a ways that returns a list of
      * annotated sentences with parentKey bounded to them.

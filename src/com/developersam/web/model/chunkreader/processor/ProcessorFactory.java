@@ -61,8 +61,8 @@ public class ProcessorFactory {
      * @return a processor with all necessary information initialized.
      */
     public Processor createSummaryGenerator() {
-        SummaryGenerator p = new NaiveSummaryGenerator();
-        // SummaryGenerator p = new BasicTextRankSummaryGenerator();
+        // SummaryGenerator p = new NaiveSummaryGenerator();
+        SummaryGenerator p = new BasicTextRankSummaryGenerator();
         p.read(googleAnalyzer.getEntities(),
                 googleAnalyzer.getSentences());
         p.setParentKey(parentKey);

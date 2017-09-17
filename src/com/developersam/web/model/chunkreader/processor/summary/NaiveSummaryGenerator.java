@@ -15,37 +15,6 @@ import java.util.List;
  */
 public class NaiveSummaryGenerator extends AbstractSummaryGenerator {
 
-    private int findSentenceID(List<AnnotatedSentence> annotatedSentenceList,
-                               int pos) {
-        /*
-        // Wrong binary search method, may fix in the future.
-        int start = 0, end = annotatedSentenceList.size() - 1;
-        while (true) {
-            if (end - start <= 1) {
-                return start;
-            }
-            int mid = (start + end) / 2;
-            int midPos = annotatedSentenceList.get(mid).getPosition();
-            if (pos < midPos) {
-                end = mid;
-            } else if (pos == midPos) {
-                return mid;
-            } else {
-                start = mid;
-            }
-        }
-        */
-        for (int i = 0; i < annotatedSentenceList.size(); i++) {
-            int sentencePos = annotatedSentenceList.get(i).getPosition();
-            if (sentencePos == pos) {
-                return i;
-            } else if (sentencePos > pos) {
-                return i-1;
-            }
-        }
-        return annotatedSentenceList.size()-1;
-    }
-
     @Override
     protected List<AnnotatedSentence> getEvaluatedSentences() {
         List<AnnotatedSentence> annotatedSentenceList = new ArrayList<>();

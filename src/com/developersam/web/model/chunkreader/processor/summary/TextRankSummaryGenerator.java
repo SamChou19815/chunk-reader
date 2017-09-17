@@ -24,6 +24,7 @@ public abstract class TextRankSummaryGenerator
     @Override
     public void read(List<Entity> entityList, List<Sentence> sentenceList) {
         super.read(entityList, sentenceList);
+        buildListOfAnnotatedSentences();
         records = new ArrayList<>(sentenceList.size());
         for (int i = 0; i < sentenceList.size(); i++) {
             records.add(new HashSet<>());
@@ -160,7 +161,6 @@ public abstract class TextRankSummaryGenerator
 
     @Override
     protected List<AnnotatedSentence> getEvaluatedSentences() {
-        buildListOfAnnotatedSentences();
         buildSimilarityMatrix();
         randomVisit();
         return annotatedSentenceList;

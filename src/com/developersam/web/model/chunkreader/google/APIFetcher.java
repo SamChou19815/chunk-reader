@@ -8,8 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-
-public class APIFetcher {
+class APIFetcher {
 
     private static final String TARGET_URL =
             "https://language.googleapis.com/v1beta2/documents:annotateText?" +
@@ -19,7 +18,7 @@ public class APIFetcher {
             "key=AIzaSyCCmkB_ImxrIQdgl_ej84QgW0rQsh0_Huk";
     private String text;
 
-    public APIFetcher(String text) {
+    APIFetcher(String text) {
         this.text = text;
     }
 
@@ -58,12 +57,9 @@ public class APIFetcher {
         return sb.toString();
     }
 
-    public NLPAnalysisResult getResult() throws IOException {
-        String response = getResponse();
-        System.out.println(response);
-        JsonParser parser = new JsonParser();
-        JsonObject root = parser.parse(response).getAsJsonObject();
-        System.out.println(root);
+    NLPAnalysisResult getResult() throws IOException {
+        JsonObject root =
+                new JsonParser().parse(getResponse()).getAsJsonObject();
         return new NLPAnalysisResult(root);
     }
 
