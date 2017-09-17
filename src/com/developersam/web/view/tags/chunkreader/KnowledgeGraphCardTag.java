@@ -1,6 +1,7 @@
 package com.developersam.web.view.tags.chunkreader;
 
 import com.developersam.web.devsuit.tags.components.card.CardTag;
+import com.developersam.web.devsuit.tags.components.card.CardTextBorderedTag;
 import com.developersam.web.devsuit.tags.components.card.CardTextTag;
 import com.developersam.web.model.chunkreader.processor.TextDataStore;
 import com.developersam.web.model.chunkreader.processor.knowledge.KnowledgeNodeDataStore;
@@ -11,9 +12,11 @@ import java.util.List;
 
 public class KnowledgeGraphCardTag extends CardTag {
 
+    private TextDataStore textDataStore;
     private List<List<KnowledgeNodeDataStore>> knowledgeNodeDataStoreList;
 
     public void setTextDataStore(TextDataStore textDataStore) {
+        this.textDataStore = textDataStore;
         this.knowledgeNodeDataStoreList =
                 textDataStore.getKnowledgeNodeDataStoreList();
         setTitle("Knowledge Graph");
@@ -28,9 +31,22 @@ public class KnowledgeGraphCardTag extends CardTag {
         }
     }
 
+    private void printKeywords() throws JspException, IOException {
+        CardTextTag contentTag = new CardTextBorderedTag();
+        contentTag.setParent(this);
+        StringBuilder sb = new StringBuilder();
+        sb.append("Keywords: ");
+        for (KnowledgeNodeDataStore node: textDataStore.getKeywords()) {
+            sb.append(node.getName()).append(", ");
+        }
+        int len = sb.length();
+        setTitle(sb.delete(len-2, len).toString());
+        contentTag.setBodyContent(sb.toString());
+        contentTag.doTag();
+    }
+
     private void printGraph() throws JspException, IOException {
         StringBuilder sb;
-
         if (!knowledgeNodeDataStoreList.get(0).isEmpty()) {
             CardTextTag contentTag1 = new CardTextTag();
             contentTag1.setParent(this);
@@ -81,6 +97,7 @@ public class KnowledgeGraphCardTag extends CardTag {
     @Override
     protected void printBodyContent() throws JspException, IOException {
         printTitle();
+        printKeywords();
         printGraph();
     }
 }

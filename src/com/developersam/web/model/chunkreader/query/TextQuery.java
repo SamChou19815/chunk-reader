@@ -15,11 +15,13 @@ public class TextQuery {
 
     public TextQuery(Entity textEntity, int limit) {
         Key parentKey = textEntity.getKey();
+        KnowledgeQuery kq = new KnowledgeQuery(parentKey);
+        List<KnowledgeNodeDataStore> keywords = kq.getTop3KeyWords();
         List<List<KnowledgeNodeDataStore>> knowledgeNodeDataStoreList =
-                new KnowledgeQuery(parentKey).getListOfKnowledgeNodes();
+                kq.getListOfKnowledgeNodes();
         List<AnnotatedSentence> annotatedSentenceList =
                 new SummaryQuery(parentKey).getAnnotatedSentences(limit);
-        textDataStore = new TextDataStore(textEntity,
+        textDataStore = new TextDataStore(textEntity, keywords,
                 knowledgeNodeDataStoreList,
                 annotatedSentenceList, limit);
     }

@@ -3,6 +3,7 @@ package com.developersam.web.view.tags.chunkreader;
 import com.developersam.web.devsuit.tags.components.button.LinkButtonTag;
 import com.developersam.web.devsuit.tags.components.card.CardActionsTag;
 import com.developersam.web.devsuit.tags.components.card.CardTag;
+import com.developersam.web.devsuit.tags.components.card.CardTextBorderedTag;
 import com.developersam.web.devsuit.tags.components.card.CardTextTag;
 import com.developersam.web.model.chunkreader.processor.ShortTextDataStore;
 import com.developersam.web.model.chunkreader.processor.knowledge.KnowledgeNodeDataStore;
@@ -23,6 +24,13 @@ public class ShortTextCardTag extends CardTag {
         }
         int len = sb.length();
         setTitle(sb.delete(len-2, len).toString());
+    }
+
+    private void printDate() throws JspException, IOException {
+        CardTextTag contentTag = new CardTextBorderedTag();
+        contentTag.setParent(this);
+        contentTag.setBodyContent("Added: " + shortTextDataStore.getDate());
+        contentTag.doTag();
     }
 
     private void printShortText() throws JspException, IOException {
@@ -47,6 +55,7 @@ public class ShortTextCardTag extends CardTag {
     @Override
     protected void printBodyContent() throws JspException, IOException {
         printTitle();
+        printDate();
         printShortText();
         printActions();
     }

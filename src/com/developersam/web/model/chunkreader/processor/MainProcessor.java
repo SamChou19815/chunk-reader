@@ -8,6 +8,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Main processor is responsible for add the text to database and call all
@@ -40,6 +41,7 @@ public class MainProcessor extends DataStoreObject implements Processor {
         textEntity.setProperty("rawText", new Text(text));
         textEntity.setProperty("user",
                 userService.getCurrentUser().getNickname());
+        textEntity.setProperty("date", new Date());
         putIntoDatabase(textEntity);
         Key parentKey = textEntity.getKey();
         factory.setParentKey(parentKey);

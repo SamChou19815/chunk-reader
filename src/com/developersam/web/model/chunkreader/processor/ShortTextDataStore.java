@@ -6,12 +6,14 @@ import com.developersam.web.model.datastore.DataStoreObject;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.KeyFactory;
 
+import java.util.Date;
 import java.util.List;
 
 public class ShortTextDataStore extends DataStoreObject {
 
     private String keyString;
     private String text;
+    private String date;
     private List<KnowledgeNodeDataStore> keywords;
 
     public ShortTextDataStore(Entity textEntity) {
@@ -20,6 +22,7 @@ public class ShortTextDataStore extends DataStoreObject {
         if (text.length() > 300) {
             text = text.substring(0, 300) + " ...";
         }
+        date = dateFormatter((Date) textEntity.getProperty("date"));
         keywords = new KnowledgeQuery(textEntity.getKey()).getTop3KeyWords();
     }
 
@@ -34,6 +37,10 @@ public class ShortTextDataStore extends DataStoreObject {
 
     public String getText() {
         return text;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public List<KnowledgeNodeDataStore> getKeywords() {

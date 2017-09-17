@@ -13,12 +13,14 @@ public class TextDataStore extends DataStoreObject {
     private String keyString;
     private String text;
     private int type;
+    private List<KnowledgeNodeDataStore> keywords;
     private List<List<KnowledgeNodeDataStore>> knowledgeNodeDataStoreList;
     private List<AnnotatedSentence> annotatedSentenceList;
 
     private int limit;
 
     public TextDataStore(Entity textEntity,
+                         List<KnowledgeNodeDataStore> keywords,
                          List<List<KnowledgeNodeDataStore>>
                                  knowledgeNodeDataStoreLst,
                          List<AnnotatedSentence> annotatedSentenceLst,
@@ -27,6 +29,7 @@ public class TextDataStore extends DataStoreObject {
         keyString = KeyFactory.keyToString(textEntity.getKey());
         text = textToString(textEntity.getProperty("rawText"));
         type = (int) (long) textEntity.getProperty("type");
+        this.keywords = keywords;
         knowledgeNodeDataStoreList = knowledgeNodeDataStoreLst;
         annotatedSentenceList = annotatedSentenceLst;
         this.limit = limit;
@@ -49,6 +52,10 @@ public class TextDataStore extends DataStoreObject {
 
     public int getType() {
         return type;
+    }
+
+    public List<KnowledgeNodeDataStore> getKeywords() {
+        return keywords;
     }
 
     public List<List<KnowledgeNodeDataStore>> getKnowledgeNodeDataStoreList() {

@@ -24,7 +24,8 @@ public class MainQuery extends DataStoreObject {
                 FilterOperator.EQUAL,
                 UserServiceFactory.getUserService()
                         .getCurrentUser().getNickname());
-        Query query = getQuery().setFilter(filter);
+        Query query = getQuery().setFilter(filter)
+                .addSort("date", SortDirection.DESCENDING);
         PreparedQuery pq = getPreparedQuery(query);
         List<ShortTextDataStore> data = new ArrayList<>();
         for (Entity textEntity: pq.asIterable()) {
