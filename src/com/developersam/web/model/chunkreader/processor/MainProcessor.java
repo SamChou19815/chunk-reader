@@ -4,6 +4,8 @@ import com.developersam.web.model.datastore.DataStoreObject;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Text;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 import java.io.IOException;
 
@@ -32,9 +34,12 @@ public class MainProcessor extends DataStoreObject implements Processor {
 
     @Override
     public void process() {
+        UserService userService = UserServiceFactory.getUserService();
         // Step 1: Add Text into DB.
         Entity textEntity = getNewEntity();
         textEntity.setProperty("rawText", new Text(text));
+        textEntity.setProperty("user",
+                userService.getCurrentUser().getNickname());
         putIntoDatabase(textEntity);
         Key parentKey = textEntity.getKey();
         factory.setParentKey(parentKey);

@@ -6,6 +6,9 @@ import com.developersam.web.model.datastore.DataStoreObject;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.*;
+import com.google.appengine.api.users.UserServiceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +20,12 @@ public class MainQuery extends DataStoreObject {
     }
 
     public List<ShortTextDataStore> getShortTexts() {
-        PreparedQuery pq = getPreparedQuery(getQuery());
+        Filter filter = new FilterPredicate("user",
+                FilterOperator.EQUAL,
+                UserServiceFactory.getUserService()
+                        .getCurrentUser().getNickname());
+        Query query = getQuery().setFilter(filter);
+        PreparedQuery pq = getPreparedQuery(query);
         List<ShortTextDataStore> data = new ArrayList<>();
         for (Entity textEntity: pq.asIterable()) {
             data.add(new ShortTextDataStore(textEntity));
