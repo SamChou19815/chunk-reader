@@ -13,15 +13,15 @@ public class TextQuery {
 
     private TextDataStore textDataStore;
 
-    public TextQuery(Entity textEntity) {
+    public TextQuery(Entity textEntity, int limit) {
         Key parentKey = textEntity.getKey();
         List<List<KnowledgeNodeDataStore>> knowledgeNodeDataStoreList =
                 new KnowledgeQuery(parentKey).getListOfKnowledgeNodes();
         List<AnnotatedSentence> annotatedSentenceList =
-                new SummaryQuery(parentKey).getAnnotatedSentences();
+                new SummaryQuery(parentKey).getAnnotatedSentences(limit);
         textDataStore = new TextDataStore(textEntity,
                 knowledgeNodeDataStoreList,
-                annotatedSentenceList);
+                annotatedSentenceList, limit);
     }
 
     public TextDataStore getTextObject() {

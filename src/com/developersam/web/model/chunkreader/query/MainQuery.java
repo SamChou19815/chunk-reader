@@ -25,8 +25,8 @@ public class MainQuery extends DataStoreObject {
         return data;
     }
 
-    public TextDataStore getTextData(String keyString) {
+    public TextDataStore getTextData(String keyString, int limit) {
         Entity textEntity = getEntityByKey(KeyFactory.stringToKey(keyString));
-        return new TextQuery(textEntity).getTextObject();
+        return new TextQuery(textEntity, limit).getTextObject();
     }
 }

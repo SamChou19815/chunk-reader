@@ -31,7 +31,7 @@ public class ShortTextCardTag extends CardTag {
         LinkButtonTag linkButtonReadMoreTag = new LinkButtonTag();
         linkButtonReadMoreTag.setHref("articleDetail?key="
                 + shortTextDataStore.getKeyString());
-        linkButtonReadMoreTag.setOpenInNewTab(false);
+        linkButtonReadMoreTag.setOpenInNewTab(true);
         linkButtonReadMoreTag.setBodyContent("Read More");
         cardActionsTag.addChildrenTag(linkButtonReadMoreTag);
         cardActionsTag.doTag();

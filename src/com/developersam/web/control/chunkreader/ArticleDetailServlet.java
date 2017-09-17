@@ -16,8 +16,17 @@ public class ArticleDetailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String keyString = request.getParameter("key");
+        String limitStr = request.getParameter("limit");
+        int limit = 10;
+        if (limitStr != null) {
+            try {
+                limit = Integer.parseInt(limitStr);
+            } catch (NumberFormatException e) {
+                // do nothing.
+            }
+        }
         MainQuery query = new MainQuery();
-        request.setAttribute("textData", query.getTextData(keyString));
+        request.setAttribute("textData", query.getTextData(keyString, limit));
         request.getRequestDispatcher("/articleDetail.jsp")
                 .forward(request, response);
     }

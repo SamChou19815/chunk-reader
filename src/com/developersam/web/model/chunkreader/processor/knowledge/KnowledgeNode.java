@@ -21,13 +21,6 @@ public class KnowledgeNode {
         entity = e;
         name = entity.name;
         type = entity.type;
-        /*
-         * Type - Number relation:
-         * https://googleapis.github.io/googleapis/java/
-         * proto-google-cloud-language-v1/0.1.18/apidocs/com/google/cloud/
-         * language/v1/Entity.Type.html
-         */
-        // potentially problematic, because wikipedia may not be the only map
         metadataURL = entity.url;
         salience = entity.salience;
         sentimentScore = Util.getSentimentScore(entity.sentiment);
