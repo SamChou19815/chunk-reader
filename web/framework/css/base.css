@@ -30,6 +30,14 @@ a.title-link{
     text-decoration: none;
     font-weight: 300;
 }
+.mdl-card__supporting-text {
+    color: rgba(0,0,0,.54);
+    font-size: 16px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 16px;
+    width: 90%;
+}
 /*  Mobile */
 @media(max-width: 600px) {
     .mdl-card {
@@ -45,7 +53,7 @@ a.title-link{
 /*  Desktop */
 @media(min-width: 900px){
     .mdl-card{
-        width: 700px;
+        width: 900px;
     }
 }
 

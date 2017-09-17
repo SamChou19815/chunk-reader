@@ -27,7 +27,8 @@ public class SummaryCardTag extends CardTag {
         contentTag.setParent(this);
         StringBuilder sb = new StringBuilder();
         for (AnnotatedSentence sentence: annotatedSentenceList) {
-            sb.append(sentence.getSentence()).append(' ');
+            sb.append("<div style='margin:10px 0'>")
+                    .append(sentence.getSentence()).append("</div>");
         }
         contentTag.setBodyContent(sb.toString());
         contentTag.doTag();
