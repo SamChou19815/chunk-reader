@@ -4,8 +4,10 @@
 
 A hackathon-winning service to extract key information and summary from text.
 
-Currently, the master_legacy branch contains the original version implemented during Hackathon and
-the new rewritten one is in the master branch, which only contains the backend code.
+Currently, the 
+[master_legacy branch](https://github.com/SamChou19815/chunk-reader/tree/master_legacy) contains the
+original version implemented during Hackathon and the new rewritten one is in the master branch, 
+which only contains the backend code.
 
 A reference implementation is hosted on 
 [Developer Sam's Website](https://developersam.com/playground/chunk-reader).
