@@ -26,6 +26,6 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 dependencies {
-    implementation 'com.github.SamChou19815:chunk-reader:0.1.0'
+    implementation 'com.github.SamChou19815:chunk-reader:0.2.0'
 }
 ```

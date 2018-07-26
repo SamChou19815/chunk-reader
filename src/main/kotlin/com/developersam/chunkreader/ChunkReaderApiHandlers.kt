@@ -9,15 +9,15 @@ import com.developersam.web.queryParamsForKey
 import com.developersam.web.toJson
 
 /**
- * [ApiHandlers] provides a set of API handlers to the server.
+ * [ChunkReaderApiHandlers] provides a set of Chunk Reader API handlers to the server.
  */
-object ApiHandlers {
+object ChunkReaderApiHandlers {
 
     /**
-     * [initializeChunkReaderApiHandlers] initializes a list of Chunk Reader API handlers.
+     * [initialize] initializes a list of Chunk Reader API handlers.
      */
     @JvmStatic
-    fun initializeChunkReaderApiHandlers() {
+    fun initialize() {
         get(path = "/load") { Article[user] }
         post(path = "/analyze") { toJson<RawArticle>().process(user = user) }
         get(path = "/adjust_summary") {
