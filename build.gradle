@@ -1,0 +1,43 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.51'
+    id 'org.jetbrains.dokka' version '0.9.17'
+}
+
+group 'com.developersam'
+version '0.1.0'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    // Kinetics
+    api 'com.github.SamChou19815:kinetics:0.1.0'
+    // GCP NLP API
+    implementation 'com.google.cloud:google-cloud-language:1.35.0'
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = ["-Xjvm-default=enable"]
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = ["-Xjvm-default=enable"]
+    }
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "../docs"
+    jdkVersion = 8
+    skipDeprecated = false
+    skipEmptyPackages = true
+    impliedPlatforms = ['JVM']
+}
