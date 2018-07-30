@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'com.developersam'
-version '0.2.0'
+version '0.2.1'
 
 repositories {
     jcenter()
@@ -15,9 +15,9 @@ repositories {
 
 dependencies {
     // Kinetics
-    api 'com.github.SamChou19815:kinetics:0.1.0'
+    api 'com.github.SamChou19815:kinetics:0.3.1'
     // GCP NLP API
-    implementation 'com.google.cloud:google-cloud-language:1.35.0'
+    implementation 'com.google.cloud:google-cloud-language:1.37.1'
 }
 
 compileKotlin {

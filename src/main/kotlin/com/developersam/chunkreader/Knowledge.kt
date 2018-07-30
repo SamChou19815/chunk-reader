@@ -79,10 +79,10 @@ internal data class Knowledge(
         /**
          * [deleteAll] deletes all knowledge for a given article with [articleKey].
          */
-        internal fun deleteAll(articleKey: Key) {
-            val keys = KnowledgeEntity.query(ancestor = articleKey).toList().map { it.key }
-            KnowledgeEntity.delete(keys = keys)
-        }
+        internal fun deleteAll(articleKey: Key): Unit =
+                KnowledgeEntity.queryKeys(ancestor = articleKey) {}
+                        .toList()
+                        .let { KnowledgeEntity.delete(it) }
 
         /**
          * [buildKnowledgeGraph] uses the information from [textKey] and [entities] to build the

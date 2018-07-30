@@ -262,10 +262,10 @@ class Summary private constructor() {
         /**
          * [deleteAll] deletes all summaries for a given article with [articleKey].
          */
-        internal fun deleteAll(articleKey: Key) {
-            val keys = SentenceEntity.query(ancestor = articleKey).toList().map { it.key }
-            SentenceEntity.delete(keys = keys)
-        }
+        internal fun deleteAll(articleKey: Key): Unit =
+                SentenceEntity.queryKeys(ancestor = articleKey) {}
+                        .toList()
+                        .let { SentenceEntity.delete(it) }
 
         /**
          * [get] returns a list of sentences with [limit] (defaults to 5) associated with [textKey],
