@@ -1,6 +1,10 @@
 # Chunk Reader
 
-<img src="https://developersam.com/assets/app-icons/chunk-reader.png" width="70%"/>
+[![Build Status](https://travis-ci.com/SamChou19815/chunk-reader.svg?branch=master)](https://travis-ci.com/SamChou19815/chunk-reader)
+[![Release](https://jitpack.io/v/SamChou19815/chunk-reader.svg)](https://jitpack.io/#SamChou19815/chunk-reader)
+![GitHub](https://img.shields.io/github/license/SamChou19815/chunk-reader.svg)
+
+![ChunkReader](https://developersam.com/assets/app-icons/chunk-reader.png)
 
 A hackathon-winning service to extract key information and summary from text.
 
@@ -12,11 +16,9 @@ which only contains the backend code.
 A reference implementation is hosted on 
 [Developer Sam's Website](https://developersam.com/playground/chunk-reader).
 
-## Gradle Config
-
-[![Release](https://jitpack.io/v/SamChou19815/chunk-reader.svg)](https://jitpack.io/#SamChou19815/chunk-reader)
-
 Read the docs [here](https://docs.developersam.com/chunk-reader/)
+
+## Gradle Config
 
 Add this to your `build.gradle` to use the artifact.
 
@@ -26,6 +28,6 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 dependencies {
-    implementation 'com.github.SamChou19815:chunk-reader:0.2.1'
+    implementation 'com.github.SamChou19815:chunk-reader:+'
 }
 ```
