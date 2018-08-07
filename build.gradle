@@ -1,11 +1,11 @@
 plugins {
     id 'java-library'
-    id 'org.jetbrains.kotlin.jvm' version '1.2.51'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.60'
     id 'org.jetbrains.dokka' version '0.9.17'
 }
 
 group 'com.developersam'
-version '0.2.1'
+version '0.2.2'
 
 repositories {
     jcenter()
@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     // Kinetics
-    api 'com.github.SamChou19815:kinetics:0.3.1'
+    api 'com.github.SamChou19815:kinetics:0.4.0'
     // GCP NLP API
     implementation 'com.google.cloud:google-cloud-language:1.37.1'
 }
