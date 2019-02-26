@@ -11,10 +11,7 @@ Currently, the
 original version implemented during Hackathon and the new rewritten one is in the master branch, 
 which only contains the backend code.
 
-A reference implementation is hosted on 
-[Developer Sam's Website](https://developersam.com/playground/chunk-reader).
-
-Read the docs [here](https://docs.developersam.com/chunk-reader/)
+This project is no longer actively maintained.
 
 ## Gradle Config
 
