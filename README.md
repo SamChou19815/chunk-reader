@@ -4,8 +4,6 @@
 [![Release](https://jitpack.io/v/SamChou19815/chunk-reader.svg)](https://jitpack.io/#SamChou19815/chunk-reader)
 ![GitHub](https://img.shields.io/github/license/SamChou19815/chunk-reader.svg)
 
-![ChunkReader](https://developersam.com/assets/app-icons/chunk-reader.png)
-
 A hackathon-winning service to extract key information and summary from text.
 
 Currently, the 
